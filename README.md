@@ -56,6 +56,6 @@ cdn ...
 
 after reboot
 ```
-nmcli device wifi connect *SSID*
+nmcli device wifi connect *SSID* password *PASSWORD*
 ```
 https://github.com/binoymanoj/Hypr-Arch
