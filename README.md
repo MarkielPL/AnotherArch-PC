@@ -57,5 +57,9 @@ cdn ...
 after reboot
 ```
 nmcli device wifi connect SSID password PASSWORD
+cd /opt
+sudo gil clone https://aur.archlinux.org/yay-git.git
+sudo chonw -R USER:USER yay-git && cd yay-git
+makepkg -si
 ```
 https://github.com/binoymanoj/Hypr-Arch
