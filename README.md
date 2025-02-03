@@ -55,4 +55,6 @@ mount /dev/sdb3 /mnt/home
 cdn ...
 
 after reboot
+nmcli device wifi connect *SSID*
+
 https://github.com/binoymanoj/Hypr-Arch
