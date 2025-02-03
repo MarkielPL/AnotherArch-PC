@@ -8,7 +8,7 @@ iwctl
 >[iwd]# device list
 >[iwd]# station name get-networks
 >[iwd]# station name connect SSID
-# If network is hidden:
+### If network is hidden:
 >[iwd]# station name connect-hidden SSID
   exit
 lsblk
