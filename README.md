@@ -4,6 +4,7 @@
 > rfkill unblock all
 
 #https://wiki.archlinux.org/title/Iwd
+
 iwctl
 ```
 [iwd]# device list
@@ -11,8 +12,10 @@ iwctl
 [iwd]# station name connect SSID
 ```
 ### If network is hidden:
->[iwd]# station name connect-hidden SSID
+
+[iwd]# station name connect-hidden SSID
   exit
+
 lsblk
 >cfdisk /dev/...
 
