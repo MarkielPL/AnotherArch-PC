@@ -19,7 +19,19 @@ iwctl
 ```
 ```
 pacman-hey --init
+pacman-hey --populate archlinux
 ```
+
+## option *A*:
+```
+archinstall 😉
+```
+## option *B*:
+```
+curl -L archfi.sf.net/archfi > archfi
+sh archfi
+```
+## option *C*:
 lsblk
 >cfdisk /dev/...
 
