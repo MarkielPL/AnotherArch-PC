@@ -42,10 +42,10 @@ sda2 / 60G ext4 or btrfs
 sda3 swap 16G swap
 sda4 /home Remaining space
 ```
-
->mkfs.fat -F32 /dev/sdb1
->mkfs.btrfs /dev/sdb{root,home}
-
+```
+mkfs.fat -F32 /dev/sdb1
+mkfs.btrfs /dev/sdb{root,home}
+```
 ```
 mount /dev/sdb2 /mnt
 mkdir /mnt/{home,boot}
