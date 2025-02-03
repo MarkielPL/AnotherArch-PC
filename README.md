@@ -8,8 +8,8 @@
 iwctl
 ```
 [iwd]# device list
-[iwd]# station 'name-insteraface' show
-[iwd]# station 'name-insteraface' connect SSID
+[iwd]# station name-insteraface show
+[iwd]# station name-insteraface connect SSID
 ```
 ### If network is hidden:
 
@@ -17,7 +17,9 @@ iwctl
 [iwd]# station name connect-hidden SSID
   exit
 ```
-
+```
+pacman-hey --init
+```
 lsblk
 >cfdisk /dev/...
 
