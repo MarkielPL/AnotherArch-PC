@@ -27,6 +27,8 @@ pacman-key --populate archlinux
 archinstall 😉
 ```
 ## option *B*:
+>https://github.com/MatMoul/archfi
+
 ```
 curl -L archfi.sf.net/archfi > archfi
 sh archfi
