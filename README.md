@@ -52,11 +52,7 @@ mkdir /mnt/{home,boot}
 mount /dev/sda1 /mnt/boot
 mount /dev/sdb3 /mnt/home
 ```
-
-
-
-simple script to install arch (lvl:medium)
-archinstall 😉
+cdn ...
 
 after reboot
 https://github.com/binoymanoj/Hypr-Arch
