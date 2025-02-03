@@ -13,8 +13,10 @@ iwctl
 ```
 ### If network is hidden:
 
+```
 [iwd]# station name connect-hidden SSID
   exit
+```
 
 lsblk
 >cfdisk /dev/...
