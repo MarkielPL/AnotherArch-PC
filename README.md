@@ -8,8 +8,8 @@
 iwctl
 ```
 [iwd]# device list
-[iwd]# station *name-insteraface* show
-[iwd]# station *name-insteraface* connect SSID
+[iwd]# station 'name-insteraface' show
+[iwd]# station 'name-insteraface' connect SSID
 ```
 ### If network is hidden:
 
