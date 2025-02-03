@@ -8,8 +8,8 @@
 iwctl
 ```
 [iwd]# device list
-[iwd]# station name-insteraface show
-[iwd]# station name-insteraface connect SSID
+[iwd]# station NAME-INTERFACE show
+[iwd]# station NAME-INTERFACE connect SSID
 ```
 ### If network is hidden:
 
@@ -56,6 +56,6 @@ cdn ...
 
 after reboot
 ```
-nmcli device wifi connect *SSID* password *PASSWORD*
+nmcli device wifi connect SSID password PASSWORD
 ```
 https://github.com/binoymanoj/Hypr-Arch
