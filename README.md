@@ -18,8 +18,8 @@ iwctl
   exit
 ```
 ```
-pacman-hey --init
-pacman-hey --populate archlinux
+pacman-key --init
+pacman-key --populate archlinux
 ```
 
 ## option *A*:
