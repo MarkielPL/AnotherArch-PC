@@ -102,8 +102,9 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/p
 In the file, search for “ZSH_THEME” (Mostly on line 11). The default value is "robbyrussell“, change it to "powerlevel10k/powerlevel10k". Close the terminal and launch a new terminal.
 
 Inside the file search for “plugins=(git)"
-'''
+
+```
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
-'''
+```
 
 
