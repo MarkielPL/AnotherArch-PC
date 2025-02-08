@@ -85,15 +85,25 @@ yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-f
 ## option:
 https://github.com/binoymanoj/Hypr-Arch
 
-### awsome
+## awsome
 ```
 yay -S ttf-nerd-fonts-symbols
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
+### Plugins
+'''
+git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+'''
+
 ### edit ~/.zshrc
 
 In the file, search for “ZSH_THEME” (Mostly on line 11). The default value is "robbyrussell“, change it to "powerlevel10k/powerlevel10k". Close the terminal and launch a new terminal.
 
+Inside the file search for “plugins=(git)"
+'''
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+'''
 
 
