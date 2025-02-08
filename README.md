@@ -71,12 +71,13 @@ sudo chonw -R USER:USER yay-git && cd yay-git
 makepkg -si
 
 yay -S firefox yakuake
-
+```
 # For AMD processors use
 yay -S amd-ucode
 # For Intel
 yay -S intel-ucode
-
+## Possibly missing firmware
 ```
-
+https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
+```
 https://github.com/binoymanoj/Hypr-Arch
