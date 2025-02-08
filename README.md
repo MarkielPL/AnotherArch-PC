@@ -70,6 +70,7 @@ reflector --verbose --country *"your country"* --age 48 --sort rate --save /etc/
 (or)
 reflector --latest 200 --age 48 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
 ```
+```
 cd /opt
 git clone https://aur.archlinux.org/yay-git.git
 sudo chonw -R USER:USER yay-git && cd yay-git
