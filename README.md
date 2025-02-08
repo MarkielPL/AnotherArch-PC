@@ -69,5 +69,9 @@ cd /opt
 git clone https://aur.archlinux.org/yay-git.git
 sudo chonw -R USER:USER yay-git && cd yay-git
 makepkg -si
+
+yay -S firefox yakuake
+
 ```
+
 https://github.com/binoymanoj/Hypr-Arch
