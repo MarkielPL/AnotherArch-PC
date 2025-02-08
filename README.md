@@ -85,5 +85,15 @@ yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-f
 ## option:
 https://github.com/binoymanoj/Hypr-Arch
 
+### awsome
+```
+yay -S ttf-nerd-fonts-symbols
+sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+### edit ~/.zshrc
+
+In the file, search for “ZSH_THEME” (Mostly on line 11). The default value is "robbyrussell“, change it to "powerlevel10k/powerlevel10k". Close the terminal and launch a new terminal.
+
 
 
