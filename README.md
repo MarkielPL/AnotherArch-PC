@@ -30,12 +30,11 @@ pacman-key --populate archlinux
 archinstall 😉
 ```
 ## option *B*:
->https://github.com/MatMoul/archfi
-
 ```
 curl -L archfi.sf.net/archfi > archfi
 sh archfi
 ```
+https://github.com/MatMoul/archfi
 ## option *C*:
 lsblk
 >cfdisk /dev/...
@@ -89,10 +88,10 @@ yay -S amd-ucode
 yay -S intel-ucode
 ```
 ## Possibly missing firmware
-https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
 ```
 yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-firmware
 ```
+https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
 
 ## option:
 https://github.com/binoymanoj/Hypr-Arch
