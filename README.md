@@ -66,7 +66,7 @@ nmcli device wifi connect SSID password PASSWORD
 ```
 ```
 cd /opt
-sudo git clone https://aur.archlinux.org/yay-git.git
+git clone https://aur.archlinux.org/yay-git.git
 sudo chonw -R USER:USER yay-git && cd yay-git
 makepkg -si
 ```
