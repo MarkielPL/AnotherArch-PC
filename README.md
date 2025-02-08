@@ -79,6 +79,6 @@ yay -S intel-ucode
 ## Possibly missing firmware
 https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
 ```
-yay -S aic94xx linux-firmware-qlogic wd719x-firmware
+yay -S aic94xx linux-firmware-qlogic wd719x-firmware ast-firmware
 ```
 https://github.com/binoymanoj/Hypr-Arch
