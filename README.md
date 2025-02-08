@@ -70,7 +70,7 @@ reflector --verbose --country *"your country"* --age 48 --sort rate --save /etc/
 ```
 ### or
 ```
-reflector --latest 200 --age 48 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
+reflector --verbose --latest 200 --age 48 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 ```
 cd /opt
