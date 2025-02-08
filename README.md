@@ -81,4 +81,9 @@ https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module
 ```
 yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-firmware
 ```
+
+## option:
 https://github.com/binoymanoj/Hypr-Arch
+
+
+
