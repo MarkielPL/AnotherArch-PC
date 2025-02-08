@@ -96,6 +96,13 @@ https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module
 ## option:
 https://github.com/binoymanoj/Hypr-Arch
 
+## option 2:
+https://tuxinit.com/minimal-kde-plasma-install-arch-linux/
+### or
+https://wiki.archlinux.org/title/KDE
+### stylization
+https://www.youtube.com/watch?v=uyz4-KZOzyI
+
 ## awsome
 ```
 yay -S ttf-nerd-fonts-symbols
