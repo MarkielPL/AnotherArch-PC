@@ -72,9 +72,9 @@ makepkg -si
 
 yay -S firefox yakuake
 ```
-# For AMD processors use
+### For AMD processors use
 yay -S amd-ucode
-# For Intel
+### For Intel
 yay -S intel-ucode
 ## Possibly missing firmware
 ```
