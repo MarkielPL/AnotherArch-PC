@@ -1,6 +1,7 @@
 # *topic is in bulid, but feel free*
 
 ## AnotherArch-PC
+### when using wifi
 > rfkill unblock all
 
 #https://wiki.archlinux.org/title/Iwd
@@ -17,6 +18,8 @@ iwctl
 [iwd]# station name connect-hidden SSID
   exit
 ```
+
+### and now
 ```
 pacman-key --init
 pacman-key --populate archlinux
@@ -57,8 +60,11 @@ mount /dev/sdb3 /mnt/home
 cdn ...
 
 after reboot
+in cli
 ```
 nmcli device wifi connect SSID password PASSWORD
+```
+```
 cd /opt
 sudo git clone https://aur.archlinux.org/yay-git.git
 sudo chonw -R USER:USER yay-git && cd yay-git
