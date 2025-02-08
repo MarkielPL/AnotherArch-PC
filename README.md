@@ -67,7 +67,9 @@ nmcli device wifi connect SSID password PASSWORD
 ```
 yay -S reflector rsync curl
 reflector --verbose --country *"your country"* --age 48 --sort rate --save /etc/pacman.d/mirrorlist
-(or)
+```
+### (or)
+```
 reflector --latest 200 --age 48 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
 ```
 ```
