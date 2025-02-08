@@ -72,6 +72,11 @@ makepkg -si
 
 yay -S firefox yakuake
 
+# For AMD processors use
+yay -S amd-ucode
+# For Intel
+yay -S intel-ucode
+
 ```
 
 https://github.com/binoymanoj/Hypr-Arch
