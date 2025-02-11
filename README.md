@@ -1,4 +1,4 @@
-# *topic is in bulid, but feel free too take what u want*
+# *topic is in bulid, but feel free to take whatever u want*
 
 ## AnotherArch-PC
 ### when using wifi
