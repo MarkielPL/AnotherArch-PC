@@ -4,7 +4,7 @@
 ### when using wifi
 > rfkill unblock all
 
-#https://wiki.archlinux.org/title/Iwd
+https://wiki.archlinux.org/title/Iwd
 
 iwctl
 ```
