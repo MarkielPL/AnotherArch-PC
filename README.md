@@ -59,7 +59,7 @@ mount /dev/sdb3 /mnt/home
 cdn ...
 
 # after reboot
-in cli
+### in cli
 ```
 nmcli device wifi connect SSID password PASSWORD
 ```
