@@ -59,6 +59,10 @@ mount /dev/sdb3 /mnt/home
 cdn ...
 
 # after reboot
+## option a - Hyprland
+```
+https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
+```
 ### in cli
 ```
 nmcli device wifi connect SSID password PASSWORD
