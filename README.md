@@ -97,7 +97,7 @@ https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module
 
 ## option:
 https://github.com/JaKooLit/Arch-Hyprland
-
+or
 https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
 
 
