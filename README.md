@@ -59,10 +59,6 @@ mount /dev/sdb3 /mnt/home
 cdn ...
 
 # after reboot
-## option a - Hyprland
-```
-https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
-```
 
 ## option b
 ### in cli
@@ -101,6 +97,9 @@ https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module
 
 ## option:
 https://github.com/binoymanoj/Hypr-Arch
+
+https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
+
 
 ## option 2:
 https://tuxinit.com/minimal-kde-plasma-install-arch-linux/
