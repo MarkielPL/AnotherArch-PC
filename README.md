@@ -60,7 +60,7 @@ cdn ...
 
 # after reboot
 
-## option b
+
 ### in cli
 ```
 nmcli device wifi connect SSID password PASSWORD
@@ -95,7 +95,7 @@ yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-f
 ```
 https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
 
-## option:
+## option 1:
 https://github.com/JaKooLit/Arch-Hyprland
 or
 https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
@@ -103,8 +103,11 @@ https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
 
 ## option 2:
 https://tuxinit.com/minimal-kde-plasma-install-arch-linux/
+
 ### or
+
 https://wiki.archlinux.org/title/KDE
+
 ### stylization
 https://www.youtube.com/watch?v=uyz4-KZOzyI
 
