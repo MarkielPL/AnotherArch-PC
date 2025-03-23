@@ -96,7 +96,10 @@ yay -S aic94xx-firmware ast-firmware upd72020x-fw linux-firmware-qlogic wd719x-f
 https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
 
 ## option 1:
+```
+https://github.com/JaKooLit
 https://github.com/JaKooLit/Arch-Hyprland
+```
 or
 https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
 
