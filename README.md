@@ -63,6 +63,8 @@ cdn ...
 ```
 https://github.com/end-4/dots-hyprland/tree/main?tab=readme-ov-file
 ```
+
+## option b
 ### in cli
 ```
 nmcli device wifi connect SSID password PASSWORD
