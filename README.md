@@ -16,7 +16,7 @@ station NAME-INTERFACE connect SSID
 
 ```
 station name connect-hidden SSID
-  exit
+exit
 ```
 
 ### and now
