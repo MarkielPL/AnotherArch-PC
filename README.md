@@ -8,9 +8,9 @@ https://wiki.archlinux.org/title/Iwd
 
 iwctl
 ```
-[iwd]# device list
-[iwd]# station NAME-INTERFACE show
-[iwd]# station NAME-INTERFACE connect SSID
+device list
+station NAME-INTERFACE show
+station NAME-INTERFACE connect SSID
 ```
 ### If network is hidden:
 
