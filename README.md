@@ -15,7 +15,7 @@ station NAME-INTERFACE connect SSID
 ### If network is hidden:
 
 ```
-[iwd]# station name connect-hidden SSID
+station name connect-hidden SSID
   exit
 ```
 
