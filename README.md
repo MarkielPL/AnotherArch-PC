@@ -76,7 +76,7 @@ reflector --verbose --latest 200 --age 48 --protocol http,https --sort rate --sa
 ```
 cd /opt
 git clone https://aur.archlinux.org/yay-git.git
-sudo chonw -R USER:USER yay-git && cd yay-git
+sudo chown -R USER:USER yay-git && cd yay-git
 makepkg -si
 
 yay -S firefox yakuake
