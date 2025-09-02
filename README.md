@@ -9,7 +9,6 @@ https://wiki.archlinux.org/title/Iwd
 iwctl
 ```
 device list
-station NAME-INTERFACE show
 station NAME-INTERFACE get-networks
 station NAME-INTERFACE connect SSID
 ```
