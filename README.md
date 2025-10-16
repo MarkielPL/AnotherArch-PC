@@ -6,7 +6,7 @@
 
 https://wiki.archlinux.org/title/Iwd
 
-iwctl
+'iwctl'
 ```
 device list
 station NAME-INTERFACE get-networks
