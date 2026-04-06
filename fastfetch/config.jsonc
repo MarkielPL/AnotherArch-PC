@@ -1,0 +1,180 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+    "display": {
+        "separator": "  ",
+        "pipe": false,
+        "color": "white"
+    },
+
+    "logo": {
+        "type": "auto",
+        "source": "/home/markiel/.config/fastfetch/png/Arch.png",
+        "height": 25,
+        "width": 20,
+        "padding": {
+            "top": 3,
+            "left": 3
+        }
+    },
+
+    "modules": [
+        {
+            "type": "custom",
+            "format": "\u001b[92m┌───────────────── \u001b[38;5;223mHardware\u001b[92m ───────────────────┐"
+        },
+        {
+            "type": "host",
+            "key": "\u001b[90m󰌢 \u001b[38;5;223mPC     ",
+            "valueColor": "white"
+        },
+        {
+            "type": "cpu",
+            "key": "\u001b[92m󰻠 \u001b[38;5;223mCPU    ",
+            "valueColor": "white"
+        },
+        {
+            "type": "gpu",
+            "key": "\u001b[33m󰍹 \u001b[38;5;223mGPU    ",
+            "valueColor": "white"
+        },
+        {
+            "type": "memory",
+            "key": "\u001b[35m󰑭 \u001b[38;5;223mRAM    ",
+            "valueColor": "white"
+        },
+
+        {
+            "type": "memory",
+            "key": "{#@208}{#@166}{#@208}{#@220}│        ",
+            "percent": {
+                "type": [
+                    "bar",
+                    "hide-others"
+                ]
+            }
+        },
+
+        {
+            "type": "disk",
+            "key": "\u001b[37m󰋊 \u001b[38;5;223mDisk   ",
+            "valueColor": "white",
+        },
+
+        {
+            "key": "󰩟 Local  ",
+            "type": "localip",
+            "format": "{ipv4}",
+            "keyColor": "36"
+        },
+
+        {
+            "key": "╰ Public",
+            "type": "publicip",
+            "format": "{ip} -> {location}",
+            "keyColor": "36"
+        },
+
+        {
+            "type": "custom",
+            "format": "\u001b[92m└──────────────────────────────────────────────┘"
+        },
+
+
+        {
+            "type": "custom",
+            "format": "\u001b[93m┌────────────────── \u001b[38;5;223mSoftware\u001b[93m ──────────────────┐"
+        },
+        {
+            "type": "os",
+            "key": "\u001b[34m \u001b[38;5;223mOS    ",
+            "valueColor": "white"
+        },
+        {
+            "type": "kernel",
+            "key": "\u001b[33m󰌽 \u001b[38;5;223mKernel",
+            "valueColor": "white"
+        },
+        {
+            "type": "bios",
+            "key": "\u001b[31m󰖡 \u001b[38;5;223mBIOS  ",
+            "valueColor": "white"
+        },
+        {
+            "type": "packages",
+            "key": "\u001b[93m󰏗 \u001b[38;5;223mPkgs  ",
+            "valueColor": "white"
+        },
+        {
+            "type": "shell",
+            "key": "\u001b[90m󰞷 \u001b[38;5;223mShell ",
+            "valueColor": "white"
+        },
+        "break",
+        {
+            "key": "{#31}{#keys} user",
+            "type": "title",
+            "format": "  {user-name}"
+        },
+        {
+            "type": "de",
+            "key": "\u001b[31m󰧨 \u001b[38;5;223mDE    ",
+            "valueColor": "white"
+        },
+        {
+            "type": "lm",
+            "key": "\u001b[33m󰍁 \u001b[38;5;223mLogin ",
+            "valueColor": "white"
+        },
+        {
+            "type": "wm",
+            "key": "\u001b[96m󱂬 \u001b[38;5;223mWM    ",
+            "valueColor": "white"
+        },
+        {
+            "type": "wmtheme",
+            "key": "\u001b[34m󰉦 \u001b[38;5;223mTheme ",
+            "valueColor": "white"
+        },
+        {
+            "type": "terminal",
+            "key": "\u001b[90m󰆍 \u001b[38;5;223mTerm  ",
+            "valueColor": "white"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[96m└──────────────────────────────────────────────┘"
+        },
+
+        {
+            "type": "custom",
+            "format": "\u001b[95m┌───────────── \u001b[38;5;223mUptime / Age / DT\u001b[95m ──────────────┐"
+        },
+        {
+            "type": "command",
+            "key": "\u001b[95m› \u001b[38;5;223mOS Age    ",
+            "valueColor": "white",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+        },
+        {
+            "type": "uptime",
+            "key": "\u001b[95m› \u001b[38;5;223mUptime   ▸ ",
+            "valueColor": "white"
+        },
+        {
+            "type": "datetime",
+            "key": "\u001b[95m› \u001b[38;5;223mDateTime  ",
+            "valueColor": "white"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[95m└──────────────────────────────────────────────┘"
+        },
+
+        {
+            "type": "colors",
+            "paddingLeft": 6,
+            "symbol": "circle",
+        }
+    ]
+}
