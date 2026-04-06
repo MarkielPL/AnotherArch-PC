@@ -140,6 +140,11 @@ passwd <uzytkownik>
 
 Zastąp `<uzytkownik>` swoją nazwą użytkownika;
 
+</details>
+
+<details>
+<summary>Instalacja programu rozruchowego </summary>
+
 ## 9. Instalacja sieci i bootloadera
 Zainstaluj NetworkManager i włącz usługę:
 
@@ -153,12 +158,6 @@ Po restarcie możesz połączyć się z Wi-Fi:
 ```sh
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
-
-</details>
-
-<details>
-<summary>Instalacja programu rozruchowego </summary>
-
 
 ### Opcja 1: systemd-boot
 
