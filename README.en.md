@@ -2,6 +2,9 @@
 
 This is the consolidated English installation guide for Arch Linux, with Polish character support.
 
+<details>
+<summary>System instalation</summary>
+   
 ## 1. Verify UEFI
 Make sure the live system booted in UEFI mode:
 
@@ -201,6 +204,11 @@ sh archfi
    nmcli device wifi connect <SSID> password <PASSWORD>
    ```
 
+</details>
+
+<details>
+<summary>Boot instalation</summary>
+
 2. Install a bootloader:
 
 ## Option A:
@@ -310,8 +318,14 @@ https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module
 
 8. Install example packages:
    ```sh
-   yay -S brave-bin yakuake
+   yay -S brave-bin
    ```
+   
+</details>
+
+<details>
+<summary>GUI instalation</summary>
+
 
 ## 9. Desktop environment and configuration
 
@@ -356,6 +370,8 @@ systemctl enable sddm
    - set `ZSH_THEME="powerlevel10k/powerlevel10k"`
    - set `plugins=(git zsh-autosuggestions zsh-syntax-highlighting)`
    - uncomment `ENABLE_CORRECTION="true"`
+
+</details>
 
 ## Notes
 - Replace `/dev/sdX`, `/dev/sdX1`, `/dev/sdX2`, `/dev/sdX3`, `/dev/sdX4` with real devices.
