@@ -3,8 +3,8 @@ Another Linux operating system installation guide to set up Arch on your machine
 
 ## Language Selection
 
-- 🇬🇧 [English](README.en.md)
-- 🇵🇱 [Polski](README.pl.md)
+- EN ![US](README.en.md)
+- PL ![PL](README.pl.md)
 - 🇩🇪 Deutsch
 - 🇫🇷 Français
 
