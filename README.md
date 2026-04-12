@@ -14,7 +14,7 @@
   </a>
   
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  
+<p align="center"> 
   <a href="README.en.md">
     <img 
       src="https://img.shields.io/badge/🇺🇸-English-blue?style=for-the-badge"
