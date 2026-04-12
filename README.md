@@ -1,10 +1,21 @@
-# AnotherArch-PC
-Another Linux operating system installation guide to set up Arch on your machine in prefered language.
+<h1 align="center"># AnotherArch-PC</h1>
+
+<p align="center">
+  Krótki opis projektu (PL) / Another Linux operating system installation guide to set up Arch on your machine in prefered language. (EN)
+</p>
+
 
 ## Language Selection
 
-- [![PL](https://flagcdn.com/w20/pl.png)](README.pl.md)
-- [![US](https://flagcdn.com/w20/us.png)](README.en.md)
-- 🇩🇪 Deutsch
-- 🇫🇷 Français
+<p align="center">
+  <a href="README.pl.md">
+    <img src="https://flagcdn.com/w40/pl.png" width="30" alt="Polski"/>
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="README.en.md">
+    <img src="https://flagcdn.com/w40/us.png" width="30" alt="English"/>
+  </a>
+</p>
+
+
 
