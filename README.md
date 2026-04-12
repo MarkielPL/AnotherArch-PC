@@ -1,4 +1,4 @@
-<h1 align="center"># AnotherArch-PC</h1>
+<h1 align="center">AnotherArch-PC</h1>
 
 <p align="center">
   Another Linux operating system installation guide to set up Arch on your machine in prefered language.
