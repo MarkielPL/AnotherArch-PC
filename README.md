@@ -11,7 +11,8 @@
   </a>
   
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  
+
+<p align="center">  
   <a href="README.en.md">
     <img src="https://flagcdn.com/w40/us.png" width="28" alt="English"/><br/>
     <img src="https://img.shields.io/badge/🇺🇸-English-blue?style=for-the-badge"/>
