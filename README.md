@@ -1,7 +1,7 @@
 <h1 align="center"># AnotherArch-PC</h1>
 
 <p align="center">
-  Krótki opis projektu (PL) / Another Linux operating system installation guide to set up Arch on your machine in prefered language. (EN)
+  Another Linux operating system installation guide to set up Arch on your machine in prefered language.
 </p>
 
 
