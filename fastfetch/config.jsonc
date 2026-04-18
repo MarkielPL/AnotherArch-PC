@@ -4,18 +4,23 @@
     "display": {
         "separator": "  ",
         "pipe": false,
-        "color": "white"
+//        "color": "white"
     },
 
     "logo": {
-        "type": "auto",
-        "source": "/home/markiel/.config/fastfetch/png/Arch.png",
-        "height": 25,
-        "width": 20,
+//        "type": "file",
+        "source": "/home/.config/fastfetch/png/Arch.png",
+        "height": 28,
+        "width": 28,
         "padding": {
-            "top": 3,
-            "left": 3
+            "top": 0,
+            "left": 0,
+            "right": 2
         }
+    },
+    "color": {
+    "1": "blue",
+    "2": "green"
     },
 
     "modules": [
@@ -69,7 +74,7 @@
         },
 
         {
-            "key": "╰ Public",
+            "key": "╰ Public ",
             "type": "publicip",
             "format": "{ip} -> {location}",
             "keyColor": "36"
@@ -174,7 +179,7 @@
         {
             "type": "colors",
             "paddingLeft": 6,
-            "symbol": "circle",
+            "symbol": "circle"
         }
     ]
 }
