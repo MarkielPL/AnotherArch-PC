@@ -3,14 +3,14 @@
 
     "logo": {
         "source": "~/.config/fastfetch/png/Arch.png",
-        "type": "sixel",
+        "type": "iterm",
         "width": 52,
         "height": 26,
-        // "padding": {
-        //     "top": 1,
-        //     "left": 0,
-        //     "right": 1
-        // }
+        "padding": {
+            "top": 1,
+            "left": 0,
+            "right": 1
+        }
      },
 
     "display": {
@@ -21,41 +21,37 @@
     "modules": [
         {
             "type": "custom",
-            "format": "\u001b[92m┌───────────────────\u001b[38;5;223m Hardware \u001b[92m─────────────────────┐"
+            "format": "\u001b[92m┌────────────────────\u001b[38;5;223m Hardware \u001b[92m────────────────────┐"
         },
 
         {
-            "type": "host",
-            "key": "󰌢 PC      ",
-            "keyColor": "90",
-            "format": "  "
-        },
-        {
             "type": "cpu",
-            "key": "󰻠 CPU   ",
+            "key": " CPU   ",
             "keyColor": "green",
-            "format": "{name}   │"
+            "format": "{name:28}                         \u001b[92m│"
         },
         {
             "type": "gpu",
-            "key": "󰍹 GPU   ",
+            "key": "󰾲 GPU   ",
             "keyColor": "yellow",
-            "format": "{name} │"
+            "format": "{name:28}                          \u001b[92m│"
         },
         {
             "type": "memory",
-            "key": "󰑭 RAM   ",
-            "keyColor": "magenta"
+            "key": " RAM   ",
+            "keyColor": "magenta",
+            "format": "{name}                          \u001b[92m│"
         },
         {
             "type": "memory",
-            "key": "    ╰───",
+            "key": "    ╰─  ",
             "keyColor": "magenta",
             "percent": {
                 "type": [
                     "bar",
                     "hide-others"
-                ]
+                ],
+            
             }
         },
         {
@@ -66,13 +62,15 @@
         {
             "type": "localip",
             "key": "󰩟 Local ",
-            "format": "{ipv4}",
+            "format": "{ipv4}                          \u001b[92m│",
             "keyColor": "cyan"
         },
+
         {
             "type": "publicip",
-            "key": "╰",
-            "format": "{ip}",
+            "url": "http://api.ipify.org?format=json",
+            "key": "    ",
+            "format": "{publicip}                          \u001b[92m│",
             "keyColor": "cyan"
         },
 
@@ -85,7 +83,7 @@
             "type": "title",
             "key": "   ",
             "keyColor": "red",
-            "format": "{6}{7}{8}"
+            "format": "\u001b[38;5;223mHello, {user-name}! on 󰌢 PC {8}"
         },
 
         {
@@ -95,53 +93,64 @@
 
         {
             "type": "os",
-            "key": " OS    ",
-            "keyColor": "blue"
+            "key": " OS     ",
+            "keyColor": "blue",
+            "format": "{name} {version}  \u001b[93m                     │"
         },
         {
             "type": "kernel",
-            "key": "󰌽 Kernel",
-            "keyColor": "yellow"
+            "key": "󰌽 Kernel ",
+            "keyColor": "blue",
+            "format": "{name}          \u001b[93m                     │"
         },
         {
             "type": "bios",
-            "key": "󰖡 BIOS  ",
-            "keyColor": "red"
+            "key": " BIOS   ",
+            "keyColor": "blue",
+            "format": "{name}          \u001b[93m                     │"
         },
         {
             "type": "packages",
-            "key": "󰏗 Pkgs  ",
-            "keyColor": "yellow"
+            "key": "󰏗 Pkgs   ",
+            "keyColor": "blue"
         },
+
         {
-            "type": "shell",
-            "key": "󰞷 Shell ",
-            "keyColor": "90"
+            "type": "display",
+            "key": "󰍹 Display",
+            "keyColor": "cyan"
         },
 
         {
             "type": "de",
-            "key": "󰧨 DE    ",
-            "keyColor": "red"
+            "key": "󰧨 DE     ",
+            "keyColor": "cyan"
         },
-        {
-            "type": "lm",
-            "key": "󰍁 Login ",
-            "keyColor": "yellow"
-        },
-        {
-            "type": "wm",
-            "key": "󱂬 WM    ",
+                {
+            "type": "wmtheme",
+            "key": "󰉼 Theme  ",
             "keyColor": "cyan"
         },
         {
-            "type": "wmtheme",
-            "key": "󰉦 Theme ",
-            "keyColor": "blue"
+            "type": "lm",
+            "key": "󰍁 Login  ",
+            "keyColor": "cyan"
         },
         {
+            "type": "wm",
+            "key": "󱂬 WM     ",
+            "keyColor": "cyan"
+        },
+
+        {
+            "type": "shell",
+            "key": "󰞷 Shell  ",
+            "keyColor": "90"
+        },
+
+        {
             "type": "terminal",
-            "key": "󰆍 Term  ",
+            "key": "󰆍 Term   ",
             "keyColor": "90"
         },
 
@@ -163,7 +172,7 @@
         },
         {
             "type": "uptime",
-            "key": "▸ Uptime  ",
+            "key": " Uptime  ",
             "keyColor": "magenta"
         },
         {
@@ -179,7 +188,7 @@
 
         {
             "type": "colors",
-            "paddingLeft": 8,
+            "paddingLeft": 18,
             "symbol": "star"
         }
     ]
