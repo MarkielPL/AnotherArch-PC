@@ -1,185 +1,196 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
 
-    "display": {
-        "separator": "  ",
-        "pipe": false,
-//        "color": "white"
-    },
-
     "logo": {
-//        "type": "file",
-        "source": "/home/.config/fastfetch/png/Arch.png",
-        "height": 28,
-        "width": 28,
+        "source": "~/.config/fastfetch/png/Arch.png",
+        "type": "iterm",
+        "width": 52,
+        "height": 26,
         "padding": {
-            "top": 0,
+            "top": 1,
             "left": 0,
-            "right": 2
+            "right": 1
         }
-    },
-    "color": {
-    "1": "blue",
-    "2": "green"
+     },
+
+    "display": {
+        "separator": " ",
+        "pipe": false
     },
 
     "modules": [
         {
             "type": "custom",
-            "format": "\u001b[92m┌───────────────── \u001b[38;5;223mHardware\u001b[92m ───────────────────┐"
-        },
-        {
-            "type": "host",
-            "key": "\u001b[90m󰌢 \u001b[38;5;223mPC     ",
-            "valueColor": "white"
-        },
-        {
-            "type": "cpu",
-            "key": "\u001b[92m󰻠 \u001b[38;5;223mCPU    ",
-            "valueColor": "white"
-        },
-        {
-            "type": "gpu",
-            "key": "\u001b[33m󰍹 \u001b[38;5;223mGPU    ",
-            "valueColor": "white"
-        },
-        {
-            "type": "memory",
-            "key": "\u001b[35m󰑭 \u001b[38;5;223mRAM    ",
-            "valueColor": "white"
+            "format": "\u001b[92m┌────────────────────\u001b[38;5;223m Hardware \u001b[92m────────────────────┐"
         },
 
         {
+            "type": "cpu",
+            "key": " CPU   ",
+            "keyColor": "green",
+            "format": "{name:28}                         \u001b[92m│"
+        },
+        {
+            "type": "gpu",
+            "key": "󰾲 GPU   ",
+            "keyColor": "yellow",
+            "format": "{name:28}                          \u001b[92m│"
+        },
+        {
             "type": "memory",
-            "key": "{#@208}{#@166}{#@208}{#@220}│        ",
+            "key": " RAM   ",
+            "keyColor": "magenta",
+            "format": "{name}                          \u001b[92m│"
+        },
+        {
+            "type": "memory",
+            "key": "    ╰─  ",
+            "keyColor": "magenta",
             "percent": {
                 "type": [
                     "bar",
                     "hide-others"
-                ]
+                ],
+            
             }
         },
-
         {
             "type": "disk",
-            "key": "\u001b[37m󰋊 \u001b[38;5;223mDisk   ",
-            "valueColor": "white",
+            "key": "󰋊 Disk  ",
+            "keyColor": "white"
         },
-
         {
-            "key": "󰩟 Local  ",
             "type": "localip",
-            "format": "{ipv4}",
-            "keyColor": "36"
+            "key": "󰩟 Local ",
+            "format": "{ipv4}                          \u001b[92m│",
+            "keyColor": "cyan"
         },
 
         {
-            "key": "╰ Public ",
             "type": "publicip",
-            "format": "{ip} -> {location}",
-            "keyColor": "36"
+            "url": "http://api.ipify.org?format=json",
+            "key": "    ",
+            "format": "{publicip}                          \u001b[92m│",
+            "keyColor": "cyan"
         },
 
         {
             "type": "custom",
-            "format": "\u001b[92m└──────────────────────────────────────────────┘"
+            "format": "\u001b[92m└──────────────────────────────────────────────────┘"
         },
-
+        
+        {
+            "type": "title",
+            "key": "   ",
+            "keyColor": "red",
+            "format": "\u001b[38;5;223mHello, {user-name}! on 󰌢 PC {8}"
+        },
 
         {
             "type": "custom",
-            "format": "\u001b[93m┌────────────────── \u001b[38;5;223mSoftware\u001b[93m ──────────────────┐"
+            "format": "\u001b[93m┌────────────────────\u001b[38;5;223m Software \u001b[93m────────────────────┐"
         },
+
         {
             "type": "os",
-            "key": "\u001b[34m \u001b[38;5;223mOS    ",
-            "valueColor": "white"
+            "key": " OS     ",
+            "keyColor": "blue",
+            "format": "{name} {version}  \u001b[93m                     │"
         },
         {
             "type": "kernel",
-            "key": "\u001b[33m󰌽 \u001b[38;5;223mKernel",
-            "valueColor": "white"
+            "key": "󰌽 Kernel ",
+            "keyColor": "blue",
+            "format": "{name}          \u001b[93m                     │"
         },
         {
             "type": "bios",
-            "key": "\u001b[31m󰖡 \u001b[38;5;223mBIOS  ",
-            "valueColor": "white"
+            "key": " BIOS   ",
+            "keyColor": "blue",
+            "format": "{name}          \u001b[93m                     │"
         },
         {
             "type": "packages",
-            "key": "\u001b[93m󰏗 \u001b[38;5;223mPkgs  ",
-            "valueColor": "white"
+            "key": "󰏗 Pkgs   ",
+            "keyColor": "blue"
         },
+
         {
-            "type": "shell",
-            "key": "\u001b[90m󰞷 \u001b[38;5;223mShell ",
-            "valueColor": "white"
+            "type": "display",
+            "key": "󰍹 Display",
+            "keyColor": "cyan"
         },
-        "break",
-        {
-            "key": "{#31}{#keys} user",
-            "type": "title",
-            "format": "  {user-name}"
-        },
+
         {
             "type": "de",
-            "key": "\u001b[31m󰧨 \u001b[38;5;223mDE    ",
-            "valueColor": "white"
+            "key": "󰧨 DE     ",
+            "keyColor": "cyan"
+        },
+                {
+            "type": "wmtheme",
+            "key": "󰉼 Theme  ",
+            "keyColor": "cyan"
         },
         {
             "type": "lm",
-            "key": "\u001b[33m󰍁 \u001b[38;5;223mLogin ",
-            "valueColor": "white"
+            "key": "󰍁 Login  ",
+            "keyColor": "cyan"
         },
         {
             "type": "wm",
-            "key": "\u001b[96m󱂬 \u001b[38;5;223mWM    ",
-            "valueColor": "white"
+            "key": "󱂬 WM     ",
+            "keyColor": "cyan"
         },
+
         {
-            "type": "wmtheme",
-            "key": "\u001b[34m󰉦 \u001b[38;5;223mTheme ",
-            "valueColor": "white"
+            "type": "shell",
+            "key": "󰞷 Shell  ",
+            "keyColor": "90"
         },
+
         {
             "type": "terminal",
-            "key": "\u001b[90m󰆍 \u001b[38;5;223mTerm  ",
-            "valueColor": "white"
-        },
-        {
-            "type": "custom",
-            "format": "\u001b[96m└──────────────────────────────────────────────┘"
+            "key": "󰆍 Term   ",
+            "keyColor": "90"
         },
 
         {
             "type": "custom",
-            "format": "\u001b[95m┌───────────── \u001b[38;5;223mUptime / Age / DT\u001b[95m ──────────────┐"
+            "format": "\u001b[93m└──────────────────────────────────────────────────┘"
         },
+
+        {
+            "type": "custom",
+            "format": "\u001b[95m┌────────────────\u001b[38;5;223m Uptime / Age / DT \u001b[95m───────────────┐"
+        },
+
         {
             "type": "command",
-            "key": "\u001b[95m› \u001b[38;5;223mOS Age    ",
-            "valueColor": "white",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+            "key": " OS Age  ",
+            "keyColor": "magenta",
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); echo $(( (current - birth_install) / 86400 )) days"
         },
         {
             "type": "uptime",
-            "key": "\u001b[95m› \u001b[38;5;223mUptime   ▸ ",
-            "valueColor": "white"
+            "key": " Uptime  ",
+            "keyColor": "magenta"
         },
         {
             "type": "datetime",
-            "key": "\u001b[95m› \u001b[38;5;223mDateTime  ",
-            "valueColor": "white"
+            "key": " DateTime",
+            "keyColor": "magenta"
         },
+
         {
             "type": "custom",
-            "format": "\u001b[95m└──────────────────────────────────────────────┘"
+            "format": "\u001b[95m└──────────────────────────────────────────────────┘"
         },
 
         {
             "type": "colors",
-            "paddingLeft": 6,
-            "symbol": "circle"
+            "paddingLeft": 18,
+            "symbol": "star"
         }
     ]
+
 }
