@@ -50,10 +50,8 @@
                 "type": [
                     "bar",
                     "hide-others"
-                ],
-            
+                ]
             }
-
         },
         {
             "type": "disk",
@@ -69,13 +67,12 @@
             "keyColor": "bright_cyan"
         },
 
-        {
-            "type": "publicip",
-        //   "url": "http://api.ipify.org?format=json",
-            "key": "╰────  ",
-            "format": "{ip} {location}              \u001b[92m│",
-            "keyColor": "bright_cyan"
-        },
+        // {
+        //     "type": "publicip",
+        //     "key": "╰────  ",
+        //     "format": "{ip} {location}              \u001b[92m│",
+        //     "keyColor": "bright_cyan"
+        // },
 
         {
             "type": "custom",
@@ -84,18 +81,19 @@
         
         {
             "type": "title",
-            "key": "   ",
+            "key": "    ",
             "keyColor": "blink_red",
             "format": "\u001b[38;5;223mHello, {user-name}! on host \u001b[92m󰌢 {host-name}"
         },
 
         {
-            "type": "weather",
-            "key": "󰖙   ",
-            "keyColor": "yellow",
-            "format": "{result}"
+            "type": "command",
+            "key": "\u001b[38;5;223m 󰖙 Weather ",
+            "text": "~/.config/fastfetch/weather.sh"
+
         },
 
+        
         {
             "type": "custom",
             "format": "\u001b[93m┌────────────────────\u001b[38;5;223m Software \u001b[93m────────────────────┐"
@@ -138,7 +136,7 @@
             "key": "󰧨 DE     ",
             "keyColor": "dim_cyan"
         },
-                {
+        {
             "type": "wmtheme",
             "key": "󰉼 Theme  ",
             "keyColor": "dim_cyan"
@@ -187,7 +185,7 @@
             "type": "datetime",
             "key": " DateTime",
             "keyColor": "dim_magenta",
-            "format": "{hour}:{minute}:{second} {day-in-month} {month-name} {day-in-year} dzień {year}r"
+            "format": "{hour}:{minute}:{second} {day-in-month}{month-name} {day-in-year} dzień {year}r"
         },
 
         {
@@ -201,5 +199,4 @@
             "symbol": "star"
         }
     ]
-
 }
