@@ -10,9 +10,9 @@ LON=$(echo "$LOC_JSON" | jq -r '.loc' | cut -d ',' -f2)
 CITY=$(echo "$LOC_JSON" | jq -r '.city')
 
 # fallback gdyby API padło
-[ -z "$LAT" ] && LAT="50.982996"
-[ -z "$LON" ] && LON="23.1697933"
-[ -z "$CITY" ] && CITY="Siennica Nadolna"
+[ -z "$LAT" ] && LAT="<YOUR_LATITUDE>"
+[ -z "$LON" ] && LON="<YOUR_LONGITUDE>"
+[ -z "$CITY" ] && CITY="<YOUR_CITY>"
 
 # =========================
 # POGODA (OpenWeather)
