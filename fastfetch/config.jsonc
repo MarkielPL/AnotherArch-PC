@@ -3,7 +3,7 @@
 
     "logo": {
         "source": "~/.config/fastfetch/png/Arch.png",
-        "type": "iterm",
+        "type": "sixel",
         "width": 52,
         "height": 26,
         "padding": {
@@ -27,25 +27,25 @@
         {
             "type": "cpu",
             "key": " CPU   ",
-            "keyColor": "green",
-            "format": "{name:28}                         \u001b[92m│"
+            "keyColor": "dim_green",
+            "format": "{name:28} {cores-physical}/{cores-logical} {freq-base}/{freq-max} \u001b[92m│"
         },
         {
             "type": "gpu",
             "key": "󰾲 GPU   ",
             "keyColor": "yellow",
-            "format": "{name:28}                          \u001b[92m│"
+            "format": "{vendor} {name}                   \u001b[92m│"
         },
         {
             "type": "memory",
             "key": " RAM   ",
-            "keyColor": "magenta",
-            "format": "{name}                          \u001b[92m│"
+            "keyColor": "dim_magenta",
+            "format": "{percentage} {used}/{total}                    \u001b[92m│"
         },
         {
             "type": "memory",
-            "key": "    ╰─  ",
-            "keyColor": "magenta",
+            "key": " ╰───   ",
+            "keyColor": "dim_magenta",
             "percent": {
                 "type": [
                     "bar",
@@ -53,25 +53,28 @@
                 ],
             
             }
+
         },
         {
             "type": "disk",
             "key": "󰋊 Disk  ",
-            "keyColor": "white"
+            "keyColor": "white",
+            "format": "{name} {size-percentage} /{size-total}                          \u001b[92m│"
         },
+
         {
             "type": "localip",
             "key": "󰩟 Local ",
             "format": "{ipv4}                          \u001b[92m│",
-            "keyColor": "cyan"
+            "keyColor": "bright_cyan"
         },
 
         {
             "type": "publicip",
-            "url": "http://api.ipify.org?format=json",
-            "key": "    ",
-            "format": "{publicip}                          \u001b[92m│",
-            "keyColor": "cyan"
+        //   "url": "http://api.ipify.org?format=json",
+            "key": "╰────  ",
+            "format": "{ip} {location}              \u001b[92m│",
+            "keyColor": "bright_cyan"
         },
 
         {
@@ -82,8 +85,15 @@
         {
             "type": "title",
             "key": "   ",
-            "keyColor": "red",
-            "format": "\u001b[38;5;223mHello, {user-name}! on 󰌢 PC {8}"
+            "keyColor": "blink_red",
+            "format": "\u001b[38;5;223mHello, {user-name}! on host \u001b[92m󰌢 {host-name}"
+        },
+
+        {
+            "type": "weather",
+            "key": "󰖙   ",
+            "keyColor": "yellow",
+            "format": "{result}"
         },
 
         {
@@ -94,64 +104,62 @@
         {
             "type": "os",
             "key": " OS     ",
-            "keyColor": "blue",
+            "keyColor": "dim_blue",
             "format": "{name} {version}  \u001b[93m                     │"
         },
         {
             "type": "kernel",
             "key": "󰌽 Kernel ",
-            "keyColor": "blue",
-            "format": "{name}          \u001b[93m                     │"
+            "keyColor": "dim_blue",
+            "format": "{sysname} {release} {arch}             \u001b[93m│"
         },
         {
             "type": "bios",
             "key": " BIOS   ",
-            "keyColor": "blue",
-            "format": "{name}          \u001b[93m                     │"
+            "keyColor": "dim_blue",
+            "format": "{date} {release} {version} {type}          \u001b[93m      │"
         },
         {
             "type": "packages",
             "key": "󰏗 Pkgs   ",
-            "keyColor": "blue"
+            "keyColor": "dim_blue",
+            "format": "{all}                                     \u001b[93m│"
         },
 
         {
-            "type": "display",
+            "type": "monitor",
             "key": "󰍹 Display",
-            "keyColor": "cyan"
+            "keyColor": "dim_cyan",
+            "format": "{inch}\" {width}x{height} {refresh-rate}Hz                \u001b[93m│"
         },
 
         {
             "type": "de",
             "key": "󰧨 DE     ",
-            "keyColor": "cyan"
+            "keyColor": "dim_cyan"
         },
                 {
             "type": "wmtheme",
             "key": "󰉼 Theme  ",
-            "keyColor": "cyan"
+            "keyColor": "dim_cyan"
         },
         {
             "type": "lm",
             "key": "󰍁 Login  ",
-            "keyColor": "cyan"
-        },
-        {
-            "type": "wm",
-            "key": "󱂬 WM     ",
-            "keyColor": "cyan"
+            "keyColor": "dim_cyan"
         },
 
         {
             "type": "shell",
             "key": "󰞷 Shell  ",
-            "keyColor": "90"
+            "keyColor": "bright_black",
+            "format": "{pretty-name} {version}"
         },
 
         {
             "type": "terminal",
             "key": "󰆍 Term   ",
-            "keyColor": "90"
+            "keyColor": "bright_black"
         },
 
         {
@@ -167,18 +175,19 @@
         {
             "type": "command",
             "key": " OS Age  ",
-            "keyColor": "magenta",
+            "keyColor": "dim_magenta",
             "text": "birth_install=$(stat -c %W /); current=$(date +%s); echo $(( (current - birth_install) / 86400 )) days"
         },
         {
             "type": "uptime",
             "key": " Uptime  ",
-            "keyColor": "magenta"
+            "keyColor": "dim_magenta"
         },
         {
             "type": "datetime",
             "key": " DateTime",
-            "keyColor": "magenta"
+            "keyColor": "dim_magenta",
+            "format": "{hour}:{minute}:{second} {day-in-month} {month-name} {day-in-year} dzień {year}r"
         },
 
         {
