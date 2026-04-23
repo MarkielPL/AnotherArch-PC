@@ -81,7 +81,7 @@
         
         {
             "type": "title",
-            "key": "    ",
+            "key": " ",
             "keyColor": "blink_red",
             "format": "\u001b[38;5;223mHello, {user-name}! on host \u001b[92m󰌢 {host-name}"
         },
@@ -131,33 +131,34 @@
             "format": "{inch}\" {width}x{height} {refresh-rate}Hz                \u001b[93m│"
         },
 
-        {
-            "type": "de",
-            "key": "󰧨 DE     ",
-            "keyColor": "dim_cyan"
-        },
-        {
-            "type": "wmtheme",
-            "key": "󰉼 Theme  ",
-            "keyColor": "dim_cyan"
-        },
-        {
-            "type": "lm",
-            "key": "󰍁 Login  ",
-            "keyColor": "dim_cyan"
-        },
+        // {
+        //     "type": "de",
+        //     "key": "󰧨 DE     ",
+        //     "keyColor": "dim_cyan"
+        // },
+        // {
+        //     "type": "wmtheme",
+        //     "key": "󰉼 Theme  ",
+        //     "keyColor": "dim_cyan"
+        // },
+        // {
+        //     "type": "lm",
+        //     "key": "󰍁 Login  ",
+        //     "keyColor": "dim_cyan"
+        // },
 
         {
             "type": "shell",
             "key": "󰞷 Shell  ",
             "keyColor": "bright_black",
-            "format": "{pretty-name} {version}"
+            "format": "{pretty-name} {version}                                  \u001b[93m│"
         },
 
         {
             "type": "terminal",
             "key": "󰆍 Term   ",
-            "keyColor": "bright_black"
+            "keyColor": "bright_black",
+            "format": "{pretty-name} {version}                           \u001b[93m│"
         },
 
         {
@@ -174,18 +175,19 @@
             "type": "command",
             "key": " OS Age  ",
             "keyColor": "dim_magenta",
-            "text": "birth_install=$(stat -c %W /); current=$(date +%s); echo $(( (current - birth_install) / 86400 )) days"
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); echo $(( (current - birth_install) / 86400 )) days      \u001b[95m│"
         },
         {
             "type": "uptime",
             "key": " Uptime  ",
-            "keyColor": "dim_magenta"
+            "keyColor": "dim_magenta",
+            "format": "{days}d {hours}h {minutes}m {seconds}s, {boot-time}       \u001b[95m│"
         },
         {
             "type": "datetime",
             "key": " DateTime",
             "keyColor": "dim_magenta",
-            "format": "{hour}:{minute}:{second} {day-in-month}{month-name} {day-in-year} dzień {year}r"
+            "format": "{hour}:{minute}:{second} {day-in-month}{month-name} {day-in-year} dzień {year}r     \u001b[95m│"
         },
 
         {
