@@ -17,7 +17,7 @@ ls /sys/firmware/efi/efivars
 Jeśli katalog istnieje, jesteś w trybie UEFI;
 
 
-## 2. Sprawdź połączenie sieciowe
+## 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
 Przetestuj łączność z Internetem:
 
 ```sh
@@ -27,13 +27,14 @@ ping -c 3 archlinux.org
 Włącz synchronizację czasu:
 
 ```sh
-timedatectl set-ntp true
+timedatectl set-ntp true && timedatectl set-local-rtc true
 ```
 
 ## 3. Partycjonowanie dysku
 Stwórz partycje na docelowym dysku:
 
 ```sh
+fdisk -l
 cfdisk /dev/sdX
 ```
 
@@ -43,6 +44,9 @@ Przykładowy układ dla UEFI:
 - `/dev/sdb3` — home, btrfs
 
 Dostosuj nazwy urządzeń do swojego systemu;
+
+<details>
+<summary>system bez szyfrowania </summary>
 
 ## 4. Utwórz systemy plików
 
@@ -142,6 +146,153 @@ passwd <uzytkownik>
 ```
 
 Zastąp `<uzytkownik>` swoją nazwą użytkownika;
+
+</details>
+
+<details>
+<summary>LUKS  - nie działą jeszcze -problem z konfiguracją</summary>
+
+## 4. Utwórz system plików i zamontuj partycje
+
+```
+cryptsetup luksFormat /dev/sdX2
+cryptsetup open /dev/sdX2 luks
+mkfs.btrfs -L arch /dev/mapper/luks
+mount /dev/mapper/luks /mnt
+```
+
+## 5. Utwórz podwoluminy BTRFS i swap
+
+```
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@swap
+btrfs subvolume create /mnt/@home
+btrfs subvolume create /mnt/@log
+btrfs subvolume create /mnt/@cache
+btrfs subvolume create /mnt/@scratch
+```
+
+Zamontuj ponownie partycję i utworz punkty montowania
+```
+umount /mnt
+mount -o noatime,ssd,compress=zstd,subvol=@ /dev/mapper/luks /mnt
+
+mkdir -p /mnt/{boot,home,var/log,var/cache,scratch,btrfs}
+
+mount -o noatime,ssd,compress=zstd,subvol=@home /dev/mapper/luks /mnt/home
+mount -o noatime,ssd,compress=zstd,subvol=@log /dev/mapper/luks /mnt/var/log
+mount -o noatime,ssd,compress=zstd,subvol=@cache /dev/mapper/luks /mnt/var/cache
+mount -o noatime,ssd,compress=zstd,subvol=@scratch /dev/mapper/luks /mnt/scratch
+mount -o noatime,ssd,compress=zstd,subvolid=5 /dev/mapper/luks /mnt/btrfs  # const 5 for BTRFS's root
+
+mkfs.fat -F32 /dev/sdX1
+mount /dev/sdX /mnt/boot
+```
+
+<h1 align="center"><img src="./pic/mounted.png"/>
+</h1>
+
+
+swapfile:
+```
+cd /mnt/btrfs/@swap
+btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile  # replace 20 with a number slightly larger than your ram if you want to hibernate
+swapon ./swapfile
+cd
+```
+
+## 6. Zainstaluj system podstawowy
+[Reflector](https://wiki.archlinux.org/title/Reflector) to narzędzie w Arch Linux służące do automatycznego wyboru i aktualizacji listy najszybszych serwerów (mirrorów) repozytoriów pakietów.
+
+```
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak  # backup mirrorlist
+reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist  # (replace PL with your country code)
+```
+Odkomentuj wiersze dla pakietów 32-bitowych, a następnie zainstaluj system
+
+```
+nano /etc/pacman.conf
+ ---
+ [multilib]
+ Include = /etc/pacman.d/mirrorlist
+ ---
+
+pacman -Syy
+
+pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <"architectureCPU">-ucode btrfs-progs networkmanager sudo git reflector
+
+genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+## 7. Konfiguracja systemu
+```
+arch-chroot /mnt
+```
+Ustaw strefę czasową
+```
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime  # zastąp własną strefą czasową
+hwclock --systohc --utc
+```
+Ustaw obsługe polskich znaków
+```
+nano /etc/locale.gen
+ ---
+ (uncomment) #en_US.UTF-8 UTF-8
+ (uncomment) #pl_PL.UTF-8 UTF-8
+ ---
+locale-gen
+
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+
+nano/etc/vconsole.conf
+ ---
+ KEYMAP=pl
+ FONT=Lat2-Terminus16.psfu.gz
+ FONT_MAP=8859-2
+```
+Ustaw nazwę maszyny, adres i hasło administratora. Następnie lokalnego urzytkownika
+```
+echo "ArchLinux" > /etc/hostname  # zastąp własną nazwą hosta
+
+nano /etc/hosts
+ ---
+ 127.0.0.1 ArchLinux.localdomain localhost
+ ::1       localhost.localdomain localhost
+ ---
+
+passwd
+
+useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<username> <username># replace with your username
+passwd <username>
+```
+
+Udziel użytkownikowi dostępu sudo
+```
+nano /ect/sudoers
+ ---
+ (uncomment one) # %wheel ALL=(ALL:ALL) ALL
+ ---
+``` 
+Uruchom internet
+```
+systemctl enable NetworkManager
+```
+Uzupełnij `mkinitcpio`
+```
+nano /etc/mkinitcpio.conf
+ ---
+ HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
+
+mkinitcpio -P
+```
+
+
+
+## 8. Utwórz initramfs i hasło administratora
+
+
+
+</details>
 
 </details>
 
