@@ -74,7 +74,7 @@ mount /dev/sdb3 /mnt/home
 ## 6. Zainstaluj system podstawowy
 
 ```sh
-pacstrap /mnt base base-devel linux linux-firmware nano usbutils amd-ucode btrfs-progs
+pacstrap /mnt base base-devel linux linux-firmware nano usbutils amd-ucode btrfs-progs networkmanager
 ```
 
 - W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
