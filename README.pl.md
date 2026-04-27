@@ -2,6 +2,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 Wciąż ją rozwijam i dziekuję za wszelkie sugestię, bo zostało sporo poprawek.
 
 [ ] Dodać grafiki/zrzuty ekranu
+
 [ ] poprawić kolorystyke
 
 <details>
