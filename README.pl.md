@@ -69,7 +69,7 @@ Dostosuj nazwy urządzeń do swojego systemu.
 ---
 
 <details>
-<summary>🔓 system bez szyfrowania</summary>
+<summary><h3>🔓 system bez szyfrowania</h3></summary>
 
 ### 4. Utwórz systemy plików
 
@@ -169,7 +169,7 @@ passwd <uzytkownik>
 
 ---
 <details>
-<summary>🔐 LUKS (WIP)</summary>
+<summary><h3>🔐 LUKS </h3></summary>
 
 > ⚠️ Sekcja w trakcie naprawy
 
@@ -354,11 +354,10 @@ systemctl enable NetworkManager
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
-</details>
-
 ---
+
 <details>
-<summary>Opcja 1: systemd-boot</summary>
+<summary><h3>Opcja 1: systemd-boot</h3></summary>
 
 
 ```bash
@@ -387,21 +386,22 @@ options root=/dev/sdb2 rw
 </details>
 
 ---
+
 <details>
-<summary>Opcja 2: GRUB</summary>
-### 
+<summary><h3>Opcja 2: GRUB</h3></summary>
 
 ```bash
 pacman -S --needed grub efibootmgr os-prober
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
 </details>
 
 ---
-<details>
-<summary>Opcja 3: rEFInd</summary>
 
+<details>
+<summary><h3>Opcja 3: rEFInd</h3></summary>
 
 ```bash
 pacman -S --needed refind
@@ -417,6 +417,7 @@ exit
 umount -R /mnt
 reboot
 ```
+
 </details>
 
 </details>
@@ -426,23 +427,30 @@ reboot
 <details>
 <summary><h2 id="instalacja-sterowników-graficznych">🎮 Sterowniki graficzne</h2></summary>
 
-### NVIDIA
+<details>
+<summary><h3>NVIDIA</h3></summary>
 
 ```bash
 sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
 ```
 
-### AMD
+</details>
+
+<summary><h3>AMD</h3></summary>
 
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
 ```
+</details>
 
-### Intel
+
+<summary><h3>Intel</h3></summary>
 
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
 ```
+
+</details>
 
 </details>
 
