@@ -66,7 +66,7 @@ Przykładowy układ dla UEFI:
 
 Dostosuj nazwy urządzeń do swojego systemu
 
----
+
 
 <details>
 <summary>🔓 system bez szyfrowania</summary>
@@ -167,7 +167,7 @@ passwd <uzytkownik>
 
 </details>
 
----
+
 <details>
 <summary>🔐 LUKS</summary>
 
@@ -354,7 +354,7 @@ systemctl enable NetworkManager
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
----
+
 
 <details>
 <summary><h3>Opcja 1: systemd-boot</h3></summary>
