@@ -1,57 +1,79 @@
-To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfiguracją bootloadera, sieci i instalacją środowiska graficznego.
-Wciąż ją rozwijam i dziekuję za wszelkie sugestię, bo zostało sporo poprawek.
+## 📌 TODO
 
-[ ] Dodać grafiki/zrzuty ekranu
+- [ ] Dodać grafiki/zrzuty ekranu  
+- [ ] poprawić kolorystyke  
 
-[ ] poprawić kolorystyke
+# 🐧 Arch Linux – Instalacja krok po kroku
+![Arch Linux](https://img.shields.io/badge/Arch-Linux-1793D1?logo=arch-linux&logoColor=white)
+![UEFI](https://img.shields.io/badge/Boot-UEFI-blue)
+![Status](https://img.shields.io/badge/status-in--progress-yellow)
+![License](https://img.shields.io/badge/license-MIT-green)
+
+To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfiguracją bootloadera, sieci i instalacją środowiska graficznego. Wciąż ją rozwijam i dziekuję za wszelkie sugestię, bo zostało sporo poprawek.
+
+---
+## 📚 Spis treści
+- [Instalacja systemu](#instalacja-systemu)
+- [Bootloader](#instalacja-programu-rozruchowego)
+- [Sterowniki GPU](#instalacja-sterowników-graficznych)
+- [Personalizacja](#personalizacja)
+- [Środowisko graficzne](#instalacja-nakładki-graficznej)
+- [Uwagi](#uwagi)
 
 <details>
-<summary>Instalacja systemu </summary>
+<summary><h2 id="instalacja-systemu">🧩 Instalacja systemu</h2></summary>
 
-## 1. Sprawdź tryb UEFI 
+### 1. Sprawdź tryb UEFI
+
 Upewnij się, że system wystartował w trybie UEFI:
 
-```sh
+```bash
 ls /sys/firmware/efi/efivars
 ```
 
-Jeśli katalog istnieje, jesteś w trybie UEFI;
+Jeśli katalog istnieje, jesteś w trybie UEFI.
 
+---
 
-## 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
+### 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
+
 Przetestuj łączność z Internetem:
 
-```sh
+```bash
 ping -c 3 archlinux.org
 ```
 
 Włącz synchronizację czasu:
 
-```sh
+```bash
 timedatectl set-ntp true && timedatectl set-local-rtc true
 ```
 
-## 3. Partycjonowanie dysku
-Stwórz partycje na docelowym dysku:
+---
 
-```sh
+### 3. Partycjonowanie dysku
+
+```bash
 fdisk -l
 cfdisk /dev/sdX
 ```
 
 Przykładowy układ dla UEFI:
-- `/dev/sdb1` — EFI 512M, FAT32
-- `/dev/sdb2` — root, ext4/btrfs
-- `/dev/sdb3` — home, btrfs
 
-Dostosuj nazwy urządzeń do swojego systemu;
+- `/dev/sdb1` — EFI 512M, FAT32  
+- `/dev/sdb2` — root, ext4/btrfs  
+- `/dev/sdb3` — home, btrfs  
+
+Dostosuj nazwy urządzeń do swojego systemu.
+
+---
 
 <details>
-<summary>system bez szyfrowania </summary>
+<summary>system bez szyfrowania</summary>
 
-## 4. Utwórz systemy plików
+### 4. Utwórz systemy plików
 
-```sh
+```bash
 mkfs.fat -F32 /dev/sdb1
 mkfs.ext4 /dev/sdb2
 mkfs.btrfs /dev/sdb3
@@ -59,103 +81,102 @@ mkfs.btrfs /dev/sdb3
 
 Jeśli root ma być na btrfs:
 
-```sh
+```bash
 mkfs.btrfs /dev/sdb2
 ```
 
-## 5. Zamontuj partycje
+---
 
-```sh
+### 5. Zamontuj partycje
+
+```bash
 mount /dev/sdb2 /mnt
 mkdir -p /mnt/{boot,home}
 mount /dev/sdb1 /mnt/boot
 mount /dev/sdb3 /mnt/home
 ```
 
-## 6. Zainstaluj system podstawowy
+---
 
-```sh
+### 6. Zainstaluj system podstawowy
+
+```bash
 pacstrap /mnt base base-devel linux linux-firmware nano usbutils amd-ucode btrfs-progs networkmanager
 ```
 
-- W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
+> W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
 
-Następnie:
-
-```sh
+```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-## 7. Konfiguracja systemu
-Ustaw strefę czasową i zegar:
+---
 
-```sh
+### 7. Konfiguracja systemu
+
+```bash
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
 ```
 
-Włącz lokalizacje:
-
-```sh
+```bash
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 ```
 
-Ustaw zmienną językową:
-
-```sh
+```bash
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 ```
 
-Skonfiguruj konsolę `/etc/vconsole.conf`:
+Plik `/etc/vconsole.conf`:
 
-```
+```ini
 KEYMAP=pl
 FONT=Lat2-Terminus16.psfu
 ```
 
-Ustaw nazwę hosta:
-
-```sh
+```bash
 echo "mojhost" > /etc/hostname
 ```
-Zamień `mojhost` na własną nazwę hosta.
-Skonfiguruj plik `/etc/hosts`:
 
-```
+Plik `/etc/hosts`:
+
+```txt
 127.0.0.1 localhost.localdomain localhost
 ::1       localhost.localdomain localhost
 127.0.1.1 mojhost.localdomain mojhost
 ```
 
+---
 
+### 8. Utwórz initramfs i hasło administratora
 
-## 8. Utwórz initramfs i hasło administratora
-
-```sh
+```bash
 mkinitcpio -P
 passwd
 ```
 
 Dodaj użytkownika:
 
-```sh
+```bash
 useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/<uzytkownik> <uzytkownik>
 passwd <uzytkownik>
 ```
 
-Zastąp `<uzytkownik>` swoją nazwą użytkownika;
-
 </details>
 
+
+---
+
+
 <details>
-<summary>LUKS  - nie działą jeszcze -problem z konfiguracją</summary>
+<summary 🔓 LUKS - nie działą jeszcze -problem z konfiguracją</summary>
 
 ## 4. Utwórz system plików i zamontuj partycje
 
-```
+```bash
 cryptsetup luksFormat /dev/sdX2
 cryptsetup open /dev/sdX2 luks
 mkfs.btrfs -L arch /dev/mapper/luks
@@ -164,7 +185,7 @@ mount /dev/mapper/luks /mnt
 
 ## 5. Utwórz podwoluminy BTRFS i swap
 
-```
+```bash
 btrfs subvolume create /mnt/@
 btrfs subvolume create /mnt/@swap
 btrfs subvolume create /mnt/@home
@@ -173,155 +194,175 @@ btrfs subvolume create /mnt/@cache
 btrfs subvolume create /mnt/@scratch
 ```
 
-Zamontuj ponownie partycję i utworz punkty montowania
-```
+```bash
 umount /mnt
 mount -o noatime,ssd,compress=zstd,subvol=@ /dev/mapper/luks /mnt
+```
 
+```bash
 mkdir -p /mnt/{boot,home,var/log,var/cache,scratch,btrfs}
+```
 
+```bash
 mount -o noatime,ssd,compress=zstd,subvol=@home /dev/mapper/luks /mnt/home
 mount -o noatime,ssd,compress=zstd,subvol=@log /dev/mapper/luks /mnt/var/log
 mount -o noatime,ssd,compress=zstd,subvol=@cache /dev/mapper/luks /mnt/var/cache
 mount -o noatime,ssd,compress=zstd,subvol=@scratch /dev/mapper/luks /mnt/scratch
-mount -o noatime,ssd,compress=zstd,subvolid=5 /dev/mapper/luks /mnt/btrfs  # const 5 for BTRFS's root
+mount -o noatime,ssd,compress=zstd,subvolid=5 /dev/mapper/luks /mnt/btrfs
+```
 
+```bash
 mkfs.fat -F32 /dev/sdX1
 mount /dev/sdX /mnt/boot
 ```
 
-<h1 align="center"><img src="./pic/mounted.png"/>
-</h1>
+### swapfile
 
-
-swapfile:
-```
+```bash
 cd /mnt/btrfs/@swap
-btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile  # replace 20 with a number slightly larger than your ram if you want to hibernate
+btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile
 swapon ./swapfile
 cd
 ```
 
+---
+
 ## 6. Zainstaluj system podstawowy
-[Reflector](https://wiki.archlinux.org/title/Reflector) to narzędzie w Arch Linux służące do automatycznego wyboru i aktualizacji listy najszybszych serwerów (mirrorów) repozytoriów pakietów.
 
+```bash
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist
 ```
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak  # backup mirrorlist
-reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist  # (replace PL with your country code)
-```
-Odkomentuj wiersze dla pakietów 32-bitowych, a następnie zainstaluj system
 
-```
+```bash
 nano /etc/pacman.conf
- ---
- [multilib]
- Include = /etc/pacman.d/mirrorlist
- ---
+```
 
+```ini
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+```bash
 pacman -Syy
+```
 
-pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <"architectureCPU">-ucode btrfs-progs networkmanager sudo git reflector
+```bash
+pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs networkmanager sudo git reflector
+```
 
+```bash
 genfstab -U /mnt >> /mnt/etc/fstab
-```
-
-## 7. Konfiguracja systemu
-```
 arch-chroot /mnt
 ```
-Ustaw strefę czasową
-```
-ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime  # zastąp własną strefą czasową
+
+---
+
+## 7. Konfiguracja systemu
+
+```bash
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
 ```
-Ustaw obsługe polskich znaków
-```
+
+```bash
 nano /etc/locale.gen
- ---
- (uncomment) #en_US.UTF-8 UTF-8
- (uncomment) #pl_PL.UTF-8 UTF-8
- ---
+```
+
+```txt
+#en_US.UTF-8 UTF-8
+#pl_PL.UTF-8 UTF-8
+```
+
+```bash
 locale-gen
-
 echo LANG=en_US.UTF-8 > /etc/locale.conf
-
-nano/etc/vconsole.conf
- ---
- KEYMAP=pl
- FONT=Lat2-Terminus16.psfu.gz
- FONT_MAP=8859-2
 ```
-Ustaw nazwę maszyny, adres i hasło administratora. Następnie lokalnego urzytkownika
-```
-echo "ArchLinux" > /etc/hostname  # zastąp własną nazwą hosta
 
+```bash
+nano /etc/vconsole.conf
+```
+
+```ini
+KEYMAP=pl
+FONT=Lat2-Terminus16.psfu.gz
+FONT_MAP=8859-2
+```
+
+```bash
+echo "ArchLinux" > /etc/hostname
+```
+
+```bash
 nano /etc/hosts
- ---
- 127.0.0.1 ArchLinux.localdomain localhost
- ::1       localhost.localdomain localhost
- ---
+```
 
+```txt
+127.0.0.1 ArchLinux.localdomain localhost
+::1       localhost.localdomain localhost
+```
+
+```bash
 passwd
+```
 
-useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<username> <username># replace with your username
+```bash
+useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<username> <username>
 passwd <username>
 ```
 
-Udziel użytkownikowi dostępu sudo
+```bash
+nano /etc/sudoers
 ```
-nano /ect/sudoers
- ---
- (uncomment one) # %wheel ALL=(ALL:ALL) ALL
- ---
-``` 
-Uruchom internet
+
+```txt
+# %wheel ALL=(ALL:ALL) ALL
 ```
+
+```bash
 systemctl enable NetworkManager
 ```
-Uzupełnij `mkinitcpio`
-```
-nano /etc/mkinitcpio.conf
- ---
- HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
 
+```bash
+nano /etc/mkinitcpio.conf
+```
+
+```txt
+HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
+```
+
+```bash
 mkinitcpio -P
 ```
 
-
-
-## 8. Utwórz initramfs i hasło administratora
-
-
-
 </details>
 
 </details>
+
+---
 
 <details>
-<summary>Instalacja programu rozruchowego </summary>
+<summary>Instalacja programu rozruchowego</summary>
 
 ## 9. Instalacja sieci i bootloadera
-Zainstaluj NetworkManager i włącz usługę:
 
-```sh
+```bash
 pacman -S networkmanager
 systemctl enable NetworkManager
 ```
 
-Po restarcie możesz połączyć się z Wi-Fi:
-
-```sh
+```bash
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
 ### Opcja 1: systemd-boot
 
-```sh
+```bash
 pacman -S --needed efibootmgr dosfstools
 bootctl --path=/boot install
 ```
 
-Utwórz `/boot/loader/loader.conf`:
+`/boot/loader/loader.conf`
 
 ```ini
 default arch
@@ -330,7 +371,7 @@ console-mode max
 editor no
 ```
 
-Utwórz `/boot/loader/entries/arch.conf`:
+`/boot/loader/entries/arch.conf`
 
 ```ini
 title   Arch Linux
@@ -339,99 +380,99 @@ initrd  /initramfs-linux.img
 options root=/dev/sdb2 rw
 ```
 
+---
+
 ### Opcja 2: GRUB
 
-```sh
+```bash
 pacman -S --needed grub efibootmgr os-prober
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+---
+
 ### Opcja 3: rEFInd
 
-```sh
+```bash
 pacman -S --needed refind
 refind-install
 ```
 
-Opcjonalnie edytuj `/boot/EFI/refind/refind.conf`, jeśli potrzebujesz niestandardowych ścieżek do jądra lub initramfs.
+---
 
 ## 10. Zakończenie instalacji
 
-```sh
+```bash
 exit
 umount -R /mnt
 reboot
 ```
-Odłącz Nosnijk instalacyjny;
 
 </details>
 
+---
+
 <details>
+<summary>Instalacja sterowników graficznych</summary>
 
+### NVIDIA
 
-<summary> Instalacja sterowników graficznych </summary>
-
-### NVIDIA:
+```bash
 sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
+```
 
-### AMD:
+### AMD
+
+```bash
 sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
+```
 
-### Intel:
+### Intel
+
+```bash
 sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
-
+```
 
 </details>
 
+---
 
 <details>
-<summary> Personalizacja </summary>
+<summary>Personalizacja</summary>
 
 ## 11. Włącz multilib
-W pliku `/etc/pacman.conf` popraw sekcję:
 
 ```ini
-# Misc options
-#UseSyslog
-Color
-#NoProgressBar
-CheckSpace
-#VerbosePkgLists
-ParallelDownloads = 5
-DownloadUser = alpm
-#DisableSandbox
-ILoveCandy
-
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
 
-Następnie zsynchronizuj bazy pakietów:
-
-```sh
+```bash
 pacman -Syu
 ```
 
+---
+
 ## 12. Mirrorlist i reflector
 
-https://wiki.archlinux.org/title/Reflector
-```sh
+```bash
 pacman -S reflector rsync curl
+```
+
+```bash
 reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
-Lub alternatywnie:
-
-```sh
-reflector --verbose --latest 200 --age 24 --protocol http,https --sort rate --save /etc/pacman.d/mirrorlist
-```
+---
 
 ## 13. Instalacja AUR i firmware
-Zainstaluj Git i zbuduj `yay`:
 
-```sh
+```bash
 pacman -S git
+```
+
+```bash
 cd /opt
 git clone https://aur.archlinux.org/yay-git.git
 chown -R $USER:$USER yay-git
@@ -439,51 +480,41 @@ cd yay-git
 makepkg -si
 ```
 
-Brakujące firmware:
-
-https://wiki.archlinux.org/title/Mkinitcpio#Possibly_missing_firmware_for_module_XXXX
-
-Jeśli potrzeba, przebuduj initramfs:
-
-```sh
+```bash
 mkinitcpio -p linux
 ```
+
 </details>
 
+---
+
 <details>
-<summary> Instalacja nakładki graficznej </summary>
-
-
+<summary>Instalacja nakładki graficznej</summary>
 
 ## 14. Instalacja pulpitu
-{
-- dodac instalację sterowników GPU;
-- rozbić instalację na różne środowiśka i ich personalizację;
-- utworzyć skrypty instalacyjne gotowych rozwiązań.
-}
 
-Zainstaluj Xorg i KDE:
-
-```sh
+```bash
 yay -S xorg xorg-xinit brave-bin plasma-nm plasma-pa dolphin konsole kdeplasma-addons yakuake
 ```
 
-Włącz SDDM:
-
-```sh
+```bash
 systemctl enable sddm
 ```
 
+---
+
 ## 15. Restart
 
-```sh
+```bash
 reboot
 ```
+
 </details>
 
+---
+
 ## Uwagi
-- Zastąp `/dev/sdX`, `/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3` właściwymi urządzeniami.
-- Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem.
-- Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR.
 
-
+- Zastąp `/dev/sdX`, `/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3` właściwymi urządzeniami  
+- Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
+- Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
