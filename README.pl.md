@@ -425,6 +425,7 @@ reboot
 ---
 
 <details>
+
 <summary><h2 id="instalacja-sterowników-graficznych">🎮 Sterowniki graficzne</h2></summary>
 
 <details>
@@ -436,14 +437,20 @@ sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-setti
 
 </details>
 
+---
+
+<details>
 <summary><h3>AMD</h3></summary>
 
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
 ```
+
 </details>
 
+---
 
+<details>
 <summary><h3>Intel</h3></summary>
 
 ```bash
@@ -509,7 +516,8 @@ mkinitcpio -p linux
 <details>
 <summary><h2 id="instalacja-nakładki-graficznej">🖥️ Środowisko graficzne</h2></summary>
 
-## 14. Instalacja pulpitu
+<details>
+<summary><h3>KDE Plasma</h3></summary>
 
 ```bash
 yay -S xorg xorg-xinit brave-bin plasma-nm plasma-pa dolphin konsole kdeplasma-addons yakuake
@@ -518,8 +526,22 @@ yay -S xorg xorg-xinit brave-bin plasma-nm plasma-pa dolphin konsole kdeplasma-a
 ```bash
 systemctl enable sddm
 ```
+</details>
+
+<details>
+<summary><h3>Gnome</h3></summary>
+> ⚠️ Sekcja w trakcie budowy
+
+</details>
 
 ---
+
+<details>
+<summary><h3>Hyprland</h3></summary>
+> ⚠️ Sekcja w trakcie budowy
+
+</details>
+
 
 ## 15. Restart
 
