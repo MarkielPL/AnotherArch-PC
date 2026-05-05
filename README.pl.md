@@ -69,7 +69,7 @@ Dostosuj nazwy urządzeń do swojego systemu.
 ---
 
 <details>
-<summary>system bez szyfrowania</summary>
+<summary>🔓 system bez szyfrowania</summary>
 
 ### 4. Utwórz systemy plików
 
@@ -167,12 +167,11 @@ passwd <uzytkownik>
 
 </details>
 
-
 ---
-
-
 <details>
-<summary 🔓 LUKS - nie działą jeszcze -problem z konfiguracją</summary>
+<summary>🔐 LUKS (WIP)</summary>
+
+> ⚠️ Sekcja w trakcie naprawy
 
 ## 4. Utwórz system plików i zamontuj partycje
 
@@ -342,7 +341,7 @@ mkinitcpio -P
 ---
 
 <details>
-<summary>Instalacja programu rozruchowego</summary>
+<summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
 
 ## 9. Instalacja sieci i bootloadera
 
@@ -414,7 +413,7 @@ reboot
 ---
 
 <details>
-<summary>Instalacja sterowników graficznych</summary>
+<summary><h2 id="instalacja-sterowników-graficznych">🎮 Sterowniki graficzne</h2></summary>
 
 ### NVIDIA
 
@@ -439,7 +438,7 @@ sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-lo
 ---
 
 <details>
-<summary>Personalizacja</summary>
+<summary><h2 id="personalizacja">⚙️ Personalizacja</h2></summary>
 
 ## 11. Włącz multilib
 
@@ -489,7 +488,7 @@ mkinitcpio -p linux
 ---
 
 <details>
-<summary>Instalacja nakładki graficznej</summary>
+<summary><h2 id="instalacja-nakładki-graficznej">🖥️ Środowisko graficzne</h2></summary>
 
 ## 14. Instalacja pulpitu
 
