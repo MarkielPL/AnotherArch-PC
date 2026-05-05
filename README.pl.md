@@ -31,9 +31,9 @@ Upewnij się, że system wystartował w trybie UEFI:
 ls /sys/firmware/efi/efivars
 ```
 
-Jeśli katalog istnieje, jesteś w trybie UEFI.
+Jeśli katalog istnieje, jesteś w trybie UEFI
 
----
+
 
 ### 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
 
@@ -49,7 +49,7 @@ Włącz synchronizację czasu:
 timedatectl set-ntp true && timedatectl set-local-rtc true
 ```
 
----
+
 
 ### 3. Partycjonowanie dysku
 
@@ -64,12 +64,12 @@ Przykładowy układ dla UEFI:
 - `/dev/sdb2` — root, ext4/btrfs  
 - `/dev/sdb3` — home, btrfs  
 
-Dostosuj nazwy urządzeń do swojego systemu.
+Dostosuj nazwy urządzeń do swojego systemu
 
 ---
 
 <details>
-<summary><h3>🔓 system bez szyfrowania</h3></summary>
+<summary>🔓 system bez szyfrowania</summary>
 
 ### 4. Utwórz systemy plików
 
@@ -85,7 +85,7 @@ Jeśli root ma być na btrfs:
 mkfs.btrfs /dev/sdb2
 ```
 
----
+
 
 ### 5. Zamontuj partycje
 
@@ -96,7 +96,7 @@ mount /dev/sdb1 /mnt/boot
 mount /dev/sdb3 /mnt/home
 ```
 
----
+
 
 ### 6. Zainstaluj system podstawowy
 
@@ -111,7 +111,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
----
+
 
 ### 7. Konfiguracja systemu
 
@@ -149,7 +149,7 @@ Plik `/etc/hosts`:
 127.0.1.1 mojhost.localdomain mojhost
 ```
 
----
+
 
 ### 8. Utwórz initramfs i hasło administratora
 
@@ -169,7 +169,7 @@ passwd <uzytkownik>
 
 ---
 <details>
-<summary><h3>🔐 LUKS </h3></summary>
+<summary>🔐 LUKS</summary>
 
 > ⚠️ Sekcja w trakcie naprawy
 
@@ -224,7 +224,7 @@ swapon ./swapfile
 cd
 ```
 
----
+
 
 ## 6. Zainstaluj system podstawowy
 
@@ -255,7 +255,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
----
+
 
 ## 7. Konfiguracja systemu
 
@@ -385,7 +385,6 @@ options root=/dev/sdb2 rw
 
 </details>
 
----
 
 <details>
 <summary><h3>Opcja 2: GRUB</h3></summary>
@@ -398,7 +397,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 </details>
 
----
+
 
 <details>
 <summary><h3>Opcja 3: rEFInd</h3></summary>
@@ -408,7 +407,6 @@ pacman -S --needed refind
 refind-install
 ```
 
----
 
 ## 10. Zakończenie instalacji
 
@@ -437,7 +435,7 @@ sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-setti
 
 </details>
 
----
+
 
 <details>
 <summary><h3>AMD</h3></summary>
@@ -448,7 +446,7 @@ sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-
 
 </details>
 
----
+
 
 <details>
 <summary><h3>Intel</h3></summary>
@@ -465,6 +463,7 @@ sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-lo
 
 <details>
 <summary><h2 id="personalizacja">⚙️ Personalizacja</h2></summary>
+> ⚠️ Sekcja w trakcie rozbudowy
 
 ## 11. Włącz multilib
 
@@ -477,7 +476,7 @@ Include = /etc/pacman.d/mirrorlist
 pacman -Syu
 ```
 
----
+
 
 ## 12. Mirrorlist i reflector
 
@@ -489,7 +488,6 @@ pacman -S reflector rsync curl
 reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
----
 
 ## 13. Instalacja AUR i firmware
 
@@ -534,7 +532,6 @@ systemctl enable sddm
 
 </details>
 
----
 
 <details>
 <summary><h3>Hyprland</h3></summary>
