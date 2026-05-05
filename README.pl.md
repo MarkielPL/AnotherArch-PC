@@ -15,6 +15,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 <details>
 <summary><h2>📚 Spis treści</h2></summary>
+
 > ⚠️ Sekcja w trakcie rozbudowy
 
 - [Instalacja systemu](#instalacja-systemu)
