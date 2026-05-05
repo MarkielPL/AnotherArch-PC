@@ -15,6 +15,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 <details>
 <summary><h2>📚 Spis treści</h2></summary>
+
 - [Instalacja systemu](#instalacja-systemu)
 - [Bootloader](#instalacja-programu-rozruchowego)
 - [Sterowniki GPU](#instalacja-sterowników-graficznych)
