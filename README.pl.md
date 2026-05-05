@@ -11,14 +11,20 @@
 
 To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfiguracją bootloadera, sieci i instalacją środowiska graficznego. Wciąż ją rozwijam i dziekuję za wszelkie sugestię, bo zostało sporo poprawek.
 
----
-## 📚 Spis treści
+
+
+<details>
+<summary><h2>📚 Spis treści</h2></summary>
 - [Instalacja systemu](#instalacja-systemu)
 - [Bootloader](#instalacja-programu-rozruchowego)
 - [Sterowniki GPU](#instalacja-sterowników-graficznych)
 - [Personalizacja](#personalizacja)
 - [Środowisko graficzne](#instalacja-nakładki-graficznej)
 - [Uwagi](#uwagi)
+
+</details>
+
+---
 
 <details>
 <summary><h2 id="instalacja-systemu">🧩 Instalacja systemu</h2></summary>
