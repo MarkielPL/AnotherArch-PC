@@ -354,7 +354,12 @@ systemctl enable NetworkManager
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
-### Opcja 1: systemd-boot
+</details>
+
+---
+<details>
+<summary>Opcja 1: systemd-boot</summary>
+
 
 ```bash
 pacman -S --needed efibootmgr dosfstools
@@ -379,19 +384,24 @@ initrd  /initramfs-linux.img
 options root=/dev/sdb2 rw
 ```
 
----
+</details>
 
-### Opcja 2: GRUB
+---
+<details>
+<summary>Opcja 2: GRUB</summary>
+### 
 
 ```bash
 pacman -S --needed grub efibootmgr os-prober
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+</details>
 
 ---
+<details>
+<summary>Opcja 3: rEFInd</summary>
 
-### Opcja 3: rEFInd
 
 ```bash
 pacman -S --needed refind
@@ -407,6 +417,7 @@ exit
 umount -R /mnt
 reboot
 ```
+</details>
 
 </details>
 
