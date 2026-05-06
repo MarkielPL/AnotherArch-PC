@@ -27,7 +27,6 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 </details>
 
----
 
 <details>
 <summary><h2 id="instalacja-systemu">🧩 Instalacja systemu</h2></summary>
@@ -234,7 +233,6 @@ cd
 ```
 
 
-
 ## 6. Zainstaluj system podstawowy
 
 ```bash
@@ -263,7 +261,6 @@ pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectur
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
-
 
 
 ## 7. Konfiguracja systemu
@@ -347,7 +344,6 @@ mkinitcpio -P
 
 </details>
 
----
 
 <details>
 <summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
@@ -362,7 +358,6 @@ systemctl enable NetworkManager
 ```bash
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
-
 
 
 <details>
@@ -407,7 +402,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 </details>
 
 
-
 <details>
 <summary><h3>Opcja 3: rEFInd</h3></summary>
 
@@ -429,7 +423,6 @@ reboot
 
 </details>
 
----
 
 <details>
 
@@ -445,7 +438,6 @@ sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-setti
 </details>
 
 
-
 <details>
 <summary><h3>AMD</h3></summary>
 
@@ -454,7 +446,6 @@ sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-
 ```
 
 </details>
-
 
 
 <details>
@@ -468,7 +459,6 @@ sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-lo
 
 </details>
 
----
 
 <details>
 <summary><h2 id="personalizacja">⚙️ Personalizacja</h2></summary>
@@ -485,8 +475,6 @@ Include = /etc/pacman.d/mirrorlist
 pacman -Syu
 ```
 
-
-
 ## 12. Mirrorlist i reflector
 
 ```bash
@@ -496,7 +484,6 @@ pacman -S reflector rsync curl
 ```bash
 reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 ```
-
 
 ## 13. Instalacja AUR i firmware
 
@@ -518,7 +505,6 @@ mkinitcpio -p linux
 
 </details>
 
----
 
 <details>
 <summary><h2 id="instalacja-nakładki-graficznej">🖥️ Środowisko graficzne</h2></summary>
