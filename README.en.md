@@ -1,6 +1,6 @@
 # Another Arch PC
 
-This is the consolidated English installation guide for Arch Linux, with Polish character support.
+## ⚠️ Section in progress
 
 <details>
 <summary>System instalation</summary>
