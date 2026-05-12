@@ -130,7 +130,7 @@ hwclock --systohc --utc
 
 ```bash
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen
+echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 ```
 
@@ -141,12 +141,12 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 Datei `/etc/vconsole.conf`:
 
 ```ini
-KEYMAP=pl
+KEYMAP=de
 FONT=Lat2-Terminus16.psfu
 ```
 
 ```bash
-echo "mojhost" > /etc/hostname
+echo "YourHost" > /etc/hostname
 ```
 
 Datei `/etc/hosts`:
