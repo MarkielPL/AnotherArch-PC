@@ -20,8 +20,8 @@
 
 <p align="center">
   <a href="README.de.md">
-    <img src="https://flagcdn.com/w40/pl.png" width="28" alt="Deutsch"/><br/>
-    <img src="https://img.shields.io/badge/-Deutsch-red?style=for-the-badge"/>
+    <img src="https://flagcdn.com/w40/de.png" width="28" alt="Deutsch"/><br/>
+    <img src="https://img.shields.io/badge/🇩🇪-Deutsch-red?style=for-the-badge"/>
   </a>
 
 <!-- ===================== -->
