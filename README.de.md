@@ -124,7 +124,7 @@ arch-chroot /mnt
 ### 7. System konfigurieren
 
 ```bash
-ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc --utc
 ```
 
