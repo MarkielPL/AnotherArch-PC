@@ -20,7 +20,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 - [Instalacja systemu](#instalacja-systemu)
 - [Bootloader](#instalacja-programu-rozruchowego)
-- [Sterowniki GPU](#instalacja-sterowników-graficznych)
+- [Sterowniki](#instalacja-sterowników)
 - [Personalizacja](#personalizacja)
 - [Środowisko graficzne](#instalacja-nakładki-graficznej)
 - [Uwagi](#uwagi)
@@ -426,7 +426,7 @@ reboot
 
 <details>
 
-<summary><h2 id="instalacja-sterowników-graficznych">🎮 Sterowniki graficzne</h2></summary>
+<summary><h2 id="instalacja-sterowników">🎮 Sterowniki</h2></summary>
 
 <details>
 <summary><h3>NVIDIA</h3></summary>

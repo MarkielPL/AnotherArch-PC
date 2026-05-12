@@ -10,14 +10,14 @@ LON=$(echo "$LOC_JSON" | jq -r '.loc' | cut -d ',' -f2)
 CITY=$(echo "$LOC_JSON" | jq -r '.city')
 
 # fallback gdyby API padło
-[ -z "$LAT" ] && LAT="<YOUR_LATITUDE>"
-[ -z "$LON" ] && LON="<YOUR_LONGITUDE>"
-[ -z "$CITY" ] && CITY="<YOUR_CITY>"
+[ -z "$LAT" ] && LAT="50.982996"
+[ -z "$LON" ] && LON="23.1697933"
+[ -z "$CITY" ] && CITY="Siennica Nadolna"
 
 # =========================
 # POGODA (OpenWeather)
 # =========================
-APIKEY="<YOUR_API_KEY>" # https://openweathermap.org/api
+APIKEY="47af0403db58f1ab729f438f377910a5"
 
 QUERY="https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&appid=${APIKEY}&units=metric"
 
@@ -33,12 +33,6 @@ DESC=$(echo "$WEATHER_JSON" | jq -r '.weather[0].description // empty')
 ICON=$(echo "$WEATHER_JSON" | jq -r '.weather[0].icon // empty')
 TEMP=$(echo "$WEATHER_JSON" | jq -r '.main.temp // empty' | cut -d '.' -f1)
 
-if ! [[ "$TEMP" =~ ^-?[0-9]+$ ]]; then
-  TEMP=0
-fi
-
-[ -z "$DESC" ] && DESC="brak danych"
-[ -z "$ICON" ] && ICON="na"
 # =========================
 # IKONY
 # =========================
@@ -73,4 +67,4 @@ fi
 # =========================
 # OUTPUT (bez ANSI!)
 # =========================
-echo "$SYMBOL $TEMP_STR  $DESC ($CITY)"
+echo "$SYMBOL $TEMP_STR  $DESC w $CITY"
