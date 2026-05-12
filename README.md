@@ -24,10 +24,4 @@
 
 <h2>⚠️ Problems</h2>
 
-<p>
-  I need tips on how to fix these dependencies and how to right-add an image
-</p>
-
-<p align="center">
-  <img src="problems/fastfetch_display.png" width="700"/>
-</p>
+LUKS on progress
