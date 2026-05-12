@@ -141,12 +141,12 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 `/etc/vconsole.conf` file:
 
 ```ini
-KEYMAP=pl
+KEYMAP=en
 FONT=Lat2-Terminus16.psfu
 ```
 
 ```bash
-echo "mojhost" > /etc/hostname
+echo "YourHost" > /etc/hostname
 ```
 
 `/etc/hosts` file:
