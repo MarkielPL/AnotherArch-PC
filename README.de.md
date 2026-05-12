@@ -266,7 +266,7 @@ arch-chroot /mnt
 ## 7. System konfigurieren
 
 ```bash
-ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc --utc
 ```
 
@@ -276,7 +276,7 @@ nano /etc/locale.gen
 
 ```txt
 #en_US.UTF-8 UTF-8
-#pl_PL.UTF-8 UTF-8
+#de_DE.UTF-8 UTF-8
 ```
 
 ```bash
@@ -289,7 +289,7 @@ nano /etc/vconsole.conf
 ```
 
 ```ini
-KEYMAP=pl
+KEYMAP=de
 FONT=Lat2-Terminus16.psfu.gz
 FONT_MAP=8859-2
 ```
