@@ -6,7 +6,7 @@
 
 ![arch](https://wiki.archlinux.org/title/Arch_Linux_(Polski))
 # 🐧 Arch Linux – Instalacja krok po kroku
-![Arch Linux](https://img.shields.io/badge/Arch-Linux-1793D1?logo=arch-linux&logoColor=white)
+![Arch Linux id=(https://wiki.archlinux.org/title/Arch_Linux_(Polski))](https://img.shields.io/badge/Arch-Linux-1793D1?logo=arch-linux&logoColor=white)
 ![UEFI](https://img.shields.io/badge/Boot-UEFI-blue)
 ![Status](https://img.shields.io/badge/status-in--progress-yellow)
 ![License](https://img.shields.io/badge/license-MIT-green)
