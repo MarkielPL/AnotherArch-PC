@@ -1,8 +1,10 @@
 ## 📌 TODO
 
 - [ ] Dodać grafiki/zrzuty ekranu  
-- [ ] poprawić kolorystyke  
+- [ ] poprawić kolorystyke
 
+
+![arch](https://wiki.archlinux.org/title/Arch_Linux_(Polski))
 # 🐧 Arch Linux – Instalacja krok po kroku
 ![Arch Linux](https://img.shields.io/badge/Arch-Linux-1793D1?logo=arch-linux&logoColor=white)
 ![UEFI](https://img.shields.io/badge/Boot-UEFI-blue)
