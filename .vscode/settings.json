@@ -5,7 +5,7 @@
     "background.renderContentAboveBackground": true,
     "background.API": true,
     "background.windowBackgrounds": [],
-    "workbench.preferredDarkColorTheme": "Night Owl",
+    "workbench.preferredDarkColorTheme": "GitHub Dark",
     "background.backgroundBlur": [
         "0",
         "0",
