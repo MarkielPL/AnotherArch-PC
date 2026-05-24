@@ -147,7 +147,7 @@ FONT=Lat2-Terminus16.psfu
 ```
 
 ```bash
-echo "mojhost" > /etc/hostname
+echo "NazwaHost" > /etc/hostname
 ```
 
 Plik `/etc/hosts`:
