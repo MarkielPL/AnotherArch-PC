@@ -207,11 +207,11 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
 ```
-
+ > odkomentować linie w pliku:
 ```bash
 nano /etc/locale.gen
 ```
- | odkomentować:
+
 ```txt
 en_US.UTF-8 UTF-8
 pl_PL.UTF-8 UTF-8
