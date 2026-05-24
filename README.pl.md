@@ -296,7 +296,7 @@ pacman -S --needed efibootmgr dosfstools
 bootctl --path=/boot install
 ```
 
-`/boot/loader/loader.conf`
+> edytować plik `/boot/loader/loader.conf`
 
 ```ini
 default arch
@@ -465,6 +465,8 @@ systemctl enable sddm
 <details>
 <summary><h3>Hyprland</h3></summary>
 > ⚠️ Sekcja w trakcie budowy
+
+https://github.com/shell-ninja/hyprconf-install
 
 </details>
 
