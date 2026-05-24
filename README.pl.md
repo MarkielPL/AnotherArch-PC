@@ -95,7 +95,6 @@ mkfs.btrfs /dev/sdb2
 ```
 
 
-
 ### 5. Zamontuj partycje
 
 ```bash
@@ -103,75 +102,6 @@ mount /dev/sdb2 /mnt
 mkdir -p /mnt/{boot,home}
 mount /dev/sdb1 /mnt/boot
 mount /dev/sdb3 /mnt/home
-```
-
-
-
-### 6. Zainstaluj system podstawowy
-
-```bash
-pacstrap /mnt base base-devel linux linux-firmware nano usbutils amd-ucode btrfs-progs networkmanager
-```
-
-> W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
-
-```bash
-genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
-```
-
-
-
-### 7. Konfiguracja systemu
-
-```bash
-ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
-hwclock --systohc --utc
-```
-
-```bash
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-```
-
-```bash
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-```
-
-Plik `/etc/vconsole.conf`:
-
-```ini
-KEYMAP=pl
-FONT=Lat2-Terminus16.psfu
-```
-
-```bash
-echo "NazwaHost" > /etc/hostname
-```
-
-Plik `/etc/hosts`:
-
-```txt
-127.0.0.1 localhost.localdomain localhost
-::1       localhost.localdomain localhost
-127.0.1.1 mojhost.localdomain mojhost
-```
-
-
-
-### 8. Utwórz initramfs i hasło administratora
-
-```bash
-mkinitcpio -P
-passwd
-```
-
-Dodaj użytkownika:
-
-```bash
-useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/<uzytkownik> <uzytkownik>
-passwd <uzytkownik>
 ```
 
 </details>
@@ -190,6 +120,7 @@ cryptsetup open /dev/sdX2 luks
 mkfs.btrfs -L arch /dev/mapper/luks
 mount /dev/mapper/luks /mnt
 ```
+
 
 ## 5. Utwórz podwoluminy BTRFS i swap
 
@@ -233,6 +164,9 @@ swapon ./swapfile
 cd
 ```
 
+<br>
+
+</details>
 
 ## 6. Zainstaluj system podstawowy
 
@@ -257,6 +191,7 @@ pacman -Syy
 ```bash
 pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs sudo git reflector
 ```
+> W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
 
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -274,10 +209,10 @@ hwclock --systohc --utc
 ```bash
 nano /etc/locale.gen
 ```
-
+ | odkomentować:
 ```txt
-#en_US.UTF-8 UTF-8
-#pl_PL.UTF-8 UTF-8
+en_US.UTF-8 UTF-8
+pl_PL.UTF-8 UTF-8
 ```
 
 ```bash
@@ -295,9 +230,9 @@ FONT=Lat2-Terminus16.psfu.gz
 FONT_MAP=8859-2
 ```
 
-```bash
+<!-- ```bash
 echo "ArchLinux" > /etc/hostname
-```
+``` -->
 
 ```bash
 nano /etc/hosts
@@ -313,14 +248,14 @@ passwd
 ```
 
 ```bash
-useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<username> <username>
-passwd <username>
+useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<UserName> <UserName>
+passwd <UserName>
 ```
 
 ```bash
 nano /etc/sudoers
 ```
-
+> odkomenttować wiersz
 ```txt
 # %wheel ALL=(ALL:ALL) ALL
 ```
@@ -328,7 +263,7 @@ nano /etc/sudoers
 ```bash
 systemctl enable NetworkManager
 ```
-
+> jeśli system jest na partycji zaszyfrowanej, należy zakualizować zawartość **"HOOKS"**:
 ```bash
 nano /etc/mkinitcpio.conf
 ```
@@ -341,8 +276,68 @@ HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-
 mkinitcpio -P
 ```
 
-</details>
 
+
+
+```bash
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+```
+
+
+
+### 7. Konfiguracja systemu
+
+```bash
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
+hwclock --systohc --utc
+```
+
+```bash
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen
+locale-gen
+```
+
+```bash
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+```
+
+Plik `/etc/vconsole.conf`:
+
+```ini
+KEYMAP=pl
+FONT=Lat2-Terminus16.psfu.gz
+FONT_MAP=8859-2
+```
+
+```bash
+echo "NazwaHost" > /etc/hostname
+```
+
+Plik `/etc/hosts`:
+
+```txt
+127.0.0.1 localhost.localdomain localhost
+::1       localhost.localdomain localhost
+127.0.1.1 mojhost.localdomain mojhost
+```
+
+
+
+### 8. Utwórz initramfs i hasło administratora
+
+```bash
+mkinitcpio -P
+passwd
+```
+
+Dodaj użytkownika:
+
+```bash
+useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/<UserName> <UserName>
+passwd <UserName>
+```
 </details>
 
 
@@ -479,12 +474,19 @@ pacman -Syu
 ## 12. Mirrorlist i reflector
 
 ```bash
-pacman -S reflector rsync curl
+pacman -S rsync curl
 ```
 
 ```bash
 reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 ```
+
+> [!WARNING]
+> - Dodać skrypt:
+>   - aktualizacja reflector z systemd
+>   - czyszczący system po kazdej aktualizacji
+```
+
 
 ## 13. Instalacja AUR i firmware
 
@@ -500,9 +502,9 @@ cd yay-git
 makepkg -si
 ```
 
-```bash
+<!-- ```bash
 mkinitcpio -p linux
-```
+``` -->
 
 </details>
 
