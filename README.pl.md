@@ -269,8 +269,8 @@ mkinitcpio -P
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ``` -->
-> [!WARNING] 
-> - Aby system sięurucomił należy zainstalowaćprogram rozruchowy 
+> [!WARNING]
+ - Aby system się urucomił należy zainstalować program rozruchowy 
 
 
 </details>
