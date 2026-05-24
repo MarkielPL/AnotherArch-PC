@@ -75,7 +75,7 @@ Przykładowy układ dla UEFI:
 
 Dostosuj nazwy urządzeń do swojego systemu
 
-
+---
 
 <details>
 <summary>🔓 system bez szyfrowania</summary>
@@ -167,6 +167,8 @@ cd
 <br>
 
 </details>
+
+--- 
 
 ## 6. Zainstaluj system podstawowy
 
