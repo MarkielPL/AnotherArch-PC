@@ -177,19 +177,6 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist
 ```
 
- > odkomentować linie w pliku:
-```bash
-nano /etc/pacman.conf
-```
-
-```ini
-[multilib]
-Include = /etc/pacman.d/mirrorlist
-```
-
-```bash
-pacman -Syy
-```
 
 ```bash
 pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs sudo git reflector
@@ -203,6 +190,19 @@ arch-chroot /mnt
 
 
 ## 7. Konfiguracja systemu
+
+> poprawić linie w pliku `/etc/pacman.conf`
+
+> [!TIP]
+> ![pacmanCONF](https://github.com/user-attachments/assets/c6ec226d-c0f7-4192-9173-cb4888888d40)
+```ini
+[multilib]
+Include = /etc/pacman.d/mirrorlist
+```
+
+```bash
+pacman -Syy
+```
 
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
@@ -267,12 +267,10 @@ mkinitcpio -P
 
 </details>
 
- ---
 
 > [!WARNING]
 >  Aby system się urucomił należy zainstalować program rozruchowy 
 
- ---
 
 <details>
 <summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
