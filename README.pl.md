@@ -468,6 +468,8 @@ systemctl enable sddm
 
 https://github.com/shell-ninja/hyprconf-install
 
+https://github.com/JaKooLit/Arch-Hyprland
+
 </details>
 
 
