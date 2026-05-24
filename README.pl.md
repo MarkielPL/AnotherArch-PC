@@ -265,28 +265,14 @@ HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-
 mkinitcpio -P
 ```
 
-<!-- ```bash
-genfstab -U /mnt >> /mnt/etc/fstab
-arch-chroot /mnt
-``` -->
-> [!WARNING]
-> - Aby system się urucomił należy zainstalować program rozruchowy 
->
-
----
-
-> [!WARNING]
-> - domyślne logowanie:
->   - użytownik: **alarm** hasło **alarm**
->   - **root** hasło **root**
-> - Aby system się urucomił należy zainstalować program rozruchowy
->   - `useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/[userName] [userName]`
->   - `passwd [userName]`
-> - przypisanie strefy czasowej
->   - `ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime`
-
 </details>
 
+ ---
+
+> [!WARNING]
+>  Aby system się urucomił należy zainstalować program rozruchowy 
+
+ ---
 
 <details>
 <summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
