@@ -272,7 +272,18 @@ arch-chroot /mnt
 > [!WARNING]
 > - Aby system się urucomił należy zainstalować program rozruchowy 
 >
+
 ---
+
+> [!WARNING]
+> - domyślne logowanie:
+>   - użytownik: **alarm** hasło **alarm**
+>   - **root** hasło **root**
+> - Aby system się urucomił należy zainstalować program rozruchowy
+>   - `useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/[userName] [userName]`
+>   - `passwd [userName]`
+> - przypisanie strefy czasowej
+>   - `ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime`
 
 </details>
 
