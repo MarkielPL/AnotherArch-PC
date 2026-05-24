@@ -73,7 +73,7 @@ Przykładowy układ dla UEFI:
 - `/dev/sdb2` — root, ext4/btrfs  
 - `/dev/sdb3` — home, btrfs  
 
-Dostosuj nazwy urządzeń do swojego systemu
+Dostosuj nazwy urządzeń do swojego systemu prz pomocy `lsblk`
 
 ---
 
@@ -177,6 +177,7 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist
 ```
 
+ > odkomentować linie w pliku:
 ```bash
 nano /etc/pacman.conf
 ```
@@ -193,8 +194,8 @@ pacman -Syy
 ```bash
 pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs sudo git reflector
 ```
-> W przypadku procesora Intel użyj `intel-ucode` zamiast `amd-ucode`.
 
+> w przypadku procesora Intel użyj `intel-ucode` jeśli AMD użyj `amd-ucode`.
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
@@ -207,11 +208,7 @@ arch-chroot /mnt
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
 ```
- > odkomentować linie w pliku:
-```bash
-nano /etc/locale.gen
-```
-
+ > odkomentować linie w pliku `/etc/locale.gen`
 ```txt
 en_US.UTF-8 UTF-8
 pl_PL.UTF-8 UTF-8
@@ -219,32 +216,26 @@ pl_PL.UTF-8 UTF-8
 
 ```bash
 locale-gen
-echo LANG=en_US.UTF-8 > /etc/locale.conf
 ```
 
-```bash
-nano /etc/vconsole.conf
-```
-
+> poprawić zawartośc pliku `/etc/vconsole.conf`
 ```ini
 KEYMAP=pl
 FONT=Lat2-Terminus16.psfu.gz
 FONT_MAP=8859-2
 ```
 
-<!-- ```bash
-echo "ArchLinux" > /etc/hostname
-``` -->
-
 ```bash
-nano /etc/hosts
+echo "ArchLinux" > /etc/hostname
 ```
 
+> dostosować zawartość pliku `/etc/hosts`
 ```txt
-127.0.0.1 ArchLinux.localdomain localhost
+127.0.0.1 localhost.localdomain localhost
 ::1       localhost.localdomain localhost
+127.0.1.1 ArchLinux.localdomain ArchLinux
 ```
-
+> Hasło dla admina i dodanie nowego użytkownika
 ```bash
 passwd
 ```
@@ -254,21 +245,17 @@ useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d
 passwd <UserName>
 ```
 
-```bash
-nano /etc/sudoers
-```
-> odkomenttować wiersz
+> odkomenttować wiersz w `/etc/sudoers`
 ```txt
-# %wheel ALL=(ALL:ALL) ALL
+%wheel ALL=(ALL:ALL) ALL
 ```
 
-```bash
+<!-- ```bash
 systemctl enable NetworkManager
-```
-> jeśli system jest na partycji zaszyfrowanej, należy zakualizować zawartość **"HOOKS"**:
-```bash
-nano /etc/mkinitcpio.conf
-```
+``` -->
+
+> jeśli system jest na partycji zaszyfrowanej, należy zakualizować zawartość **"HOOKS"** w
+`/etc/mkinitcpio.conf`
 
 ```txt
 HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
@@ -278,68 +265,14 @@ HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-
 mkinitcpio -P
 ```
 
-
-
-
-```bash
+<!-- ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
-```
+``` -->
+> [!WARNING] 
 
+> - Aby system sięurucomił należy zainstalowaćprogram rozruchowy 
 
-
-### 7. Konfiguracja systemu
-
-```bash
-ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
-hwclock --systohc --utc
-```
-
-```bash
-echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen
-locale-gen
-```
-
-```bash
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-```
-
-Plik `/etc/vconsole.conf`:
-
-```ini
-KEYMAP=pl
-FONT=Lat2-Terminus16.psfu.gz
-FONT_MAP=8859-2
-```
-
-```bash
-echo "NazwaHost" > /etc/hostname
-```
-
-Plik `/etc/hosts`:
-
-```txt
-127.0.0.1 localhost.localdomain localhost
-::1       localhost.localdomain localhost
-127.0.1.1 mojhost.localdomain mojhost
-```
-
-
-
-### 8. Utwórz initramfs i hasło administratora
-
-```bash
-mkinitcpio -P
-passwd
-```
-
-Dodaj użytkownika:
-
-```bash
-useradd -m -g users -G wheel,storage,power -s /bin/bash -d /home/<UserName> <UserName>
-passwd <UserName>
-```
 </details>
 
 
