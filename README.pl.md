@@ -270,8 +270,9 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ``` -->
 > [!WARNING]
- - Aby system się urucomił należy zainstalować program rozruchowy 
-
+> - Aby system się urucomił należy zainstalować program rozruchowy 
+>
+---
 
 </details>
 
