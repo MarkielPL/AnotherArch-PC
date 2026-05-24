@@ -255,7 +255,7 @@ pacman -Syy
 ```
 
 ```bash
-pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs networkmanager sudo git reflector
+pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs sudo git reflector
 ```
 
 ```bash
