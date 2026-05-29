@@ -198,6 +198,7 @@ mount /dev/sdb3 /mnt/home
   cd
   ```
 </details>
+
 --- 
 --- 
 
