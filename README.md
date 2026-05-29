@@ -12,6 +12,8 @@ The guide covers the basic setup required to get a working Arch Linux system run
 
 [💿 Download Arch Linux ISO](https://archlinux.org/download/)
 
+[💾 Create bootable USB](https://rufus.ie/pl/)
+
 </p>
 
 <p align="center">
