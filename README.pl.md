@@ -14,7 +14,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 
 
-<details>
+<!-- <details>
 <summary><h2>📚 Spis treści</h2></summary>
 
 > > [!NOTE]
@@ -27,7 +27,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 - [Środowisko graficzne](#instalacja-nakładki-graficznej)
 - [Uwagi](#uwagi)
 
-</details>
+</details> -->
 
 
 <details>
@@ -197,10 +197,7 @@ mount /dev/sdb3 /mnt/home
   swapon ./swapfile
   cd
   ```
-  <br>
-  
 </details>
-
 --- 
 --- 
 
@@ -229,7 +226,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ```
-<sup>***chroot = change root***</sup>
+<sup>***chroot = change root***</sup> :mechanical_arm:
 
 
 ## 7. Konfiguracja systemu
@@ -238,6 +235,7 @@ arch-chroot /mnt
 
 > [!TIP]
 > ![pacmanCONF](https://github.com/user-attachments/assets/c6ec226d-c0f7-4192-9173-cb4888888d40)
+
 ```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
@@ -334,7 +332,6 @@ nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
 > [!IMPORTANT]
-
 > Aby system się urucomił należy zainstalować program rozruchowy 
 
 
@@ -346,7 +343,7 @@ nmcli device wifi connect <SSID> password <PASSWORD>
 <details>
 <summary><h3>Opcja 1: systemd-boot</h3></summary>
 
-> [!WARNING]
+> ⚠️
 > niesprawdzone jeszcze
 
 
@@ -413,7 +410,7 @@ reboot
 
 <details>
 
-<summary><h2 id="instalacja-sterowników">🎮 Sterowniki</h2></summary>
+<summary><h2>🎮 Sterowniki</h2></summary>
 
 <details>
 <summary><h3>NVIDIA</h3></summary>
@@ -428,6 +425,9 @@ sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-setti
 <details>
 <summary><h3>AMD</h3></summary>
 
+> ⚠️
+> niesprawdzone jeszcze
+
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
 ```
@@ -437,6 +437,9 @@ sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-
 
 <details>
 <summary><h3>Intel</h3></summary>
+
+> ⚠️
+> niesprawdzone jeszcze
 
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
@@ -477,7 +480,7 @@ pacman -S rsync curl
 reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pacman.d/mirrorlist
 ```
 
-> [!WARNING]
+> [!NOTE]
 >
 > - Dodać skrypt:
 >   - aktualizacja reflector z systemd
