@@ -92,9 +92,9 @@ timedatectl set-ntp true && timedatectl set-local-rtc true
 
 ### 3. Partycjonowanie dysku
 
-
 > [!IMPORTANT]
-> Zastąp `/dev/sdX`(`/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3`) właściwymi urządzeniami, pomocna komenda to `lsblk`.
+ >
+ >  Zastąp `/dev/sdX`(`/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3`) właściwymi urządzeniami, pomocna komenda to `lsblk`.
 
 ```bash
 fdisk -l
@@ -475,6 +475,7 @@ reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pa
 ```
 
 > [!WARNING]
+>
 > - Dodać skrypt:
 >   - aktualizacja reflector z systemd
 >   - czyszczący system po kazdej aktualizacji
