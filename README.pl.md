@@ -17,7 +17,8 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 <details>
 <summary><h2>📚 Spis treści</h2></summary>
 
-> ⚠️ Sekcja w trakcie rozbudowy
+> > [!NOTE]
+> Sekcja w trakcie rozbudowy
 
 - [Instalacja systemu](#instalacja-systemu)
 - [Bootloader](#instalacja-programu-rozruchowego)
@@ -35,7 +36,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 <details> 
 <summary><h2> Opcja A - oficjalny skrypt instalator</h2> </summary>
 
-```
+```bash
 archinstall
 ```
 
@@ -44,16 +45,18 @@ archinstall
 <details> 
 <summary><h2> Opcja B - fanowski instalator</h2> </summary>
 
-```
+```bash
 curl -LO archfi.sf.net/archfi
 ```
-uruchom pobrany skrypt
-```
+
+> uruchom pobrany skrypt
+
+```bash
 sh archfi
 ```
 
 
-> - <ins>[MatMoul/archfi](https://github.com/MatMoul/archfi)</ins>
+> <sup>- <ins>[MatMoul/archfi](https://github.com/MatMoul/archfi)</ins></sup>
 
 </details>
 
@@ -63,7 +66,7 @@ sh archfi
 
 ### 1. Sprawdź tryb UEFI
 
-> upewnij się, że system wystartował w trybie UEFI:
+> upewnij się, że system instalacyjny wystartował w trybie UEFI:
 
 ```bash
 ls /sys/firmware/efi/efivars
@@ -75,7 +78,7 @@ ls /sys/firmware/efi/efivars
 
 ### 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
 
-> przetestuj łączność z Internetem
+> przetestuj łączność
 
 ```bash
 ping -c 3 archlinux.org
@@ -87,12 +90,11 @@ ping -c 3 archlinux.org
 timedatectl set-ntp true && timedatectl set-local-rtc true
 ```
 
-
-
 ### 3. Partycjonowanie dysku
 
-> [!WARNING]
-> Zastąp `/dev/sdX`(`/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3`) właściwymi urządzeniami, pomocna komenda to `lsblk`
+
+> [!IMPORTANT]
+> Zastąp `/dev/sdX`(`/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3`) właściwymi urządzeniami, pomocna komenda to `lsblk`.
 
 ```bash
 fdisk -l
@@ -142,62 +144,62 @@ mount /dev/sdb3 /mnt/home
 <details>
 <summary>🔐 LUKS</summary>
 
-> # [!CAUTION]
-> Sekcja w trakcie naprawy - przyda się pomoc
+ > # [!CAUTION]
+ > Sekcja w trakcie naprawy - przyda się pomoc.
 
-## 4. Utwórz system plików i zamontuj partycje
-
-```bash
-cryptsetup luksFormat /dev/sdX2
-cryptsetup open /dev/sdX2 luks
-mkfs.btrfs -L arch /dev/mapper/luks
-mount /dev/mapper/luks /mnt
-```
-
-
-## 5. Utwórz podwoluminy BTRFS i swap
-
-```bash
-btrfs subvolume create /mnt/@
-btrfs subvolume create /mnt/@swap
-btrfs subvolume create /mnt/@home
-btrfs subvolume create /mnt/@log
-btrfs subvolume create /mnt/@cache
-btrfs subvolume create /mnt/@scratch
-```
-
-```bash
-umount /mnt
-mount -o noatime,ssd,compress=zstd,subvol=@ /dev/mapper/luks /mnt
-```
-
-```bash
-mkdir -p /mnt/{boot,home,var/log,var/cache,scratch,btrfs}
-```
-
-```bash
-mount -o noatime,ssd,compress=zstd,subvol=@home /dev/mapper/luks /mnt/home
-mount -o noatime,ssd,compress=zstd,subvol=@log /dev/mapper/luks /mnt/var/log
-mount -o noatime,ssd,compress=zstd,subvol=@cache /dev/mapper/luks /mnt/var/cache
-mount -o noatime,ssd,compress=zstd,subvol=@scratch /dev/mapper/luks /mnt/scratch
-mount -o noatime,ssd,compress=zstd,subvolid=5 /dev/mapper/luks /mnt/btrfs
-```
-
-```bash
-mkfs.fat -F32 /dev/sdX1
-mount /dev/sdX /mnt/boot
-```
-
-### swapfile
-
-```bash
-cd /mnt/btrfs/@swap
-btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile
-swapon ./swapfile
-cd
-```
-<br>
-
+  ## 4. Utwórz system plików i zamontuj partycje
+  
+  ```bash
+  cryptsetup luksFormat /dev/sdX2
+  cryptsetup open /dev/sdX2 luks
+  mkfs.btrfs -L arch /dev/mapper/luks
+  mount /dev/mapper/luks /mnt
+  ```
+  
+  
+  ## 5. Utwórz podwoluminy BTRFS i swap
+  
+  ```bash
+  btrfs subvolume create /mnt/@
+  btrfs subvolume create /mnt/@swap
+  btrfs subvolume create /mnt/@home
+  btrfs subvolume create /mnt/@log
+  btrfs subvolume create /mnt/@cache
+  btrfs subvolume create /mnt/@scratch
+  ```
+  
+  ```bash
+  umount /mnt
+  mount -o noatime,ssd,compress=zstd,subvol=@ /dev/mapper/luks /mnt
+  ```
+  
+  ```bash
+  mkdir -p /mnt/{boot,home,var/log,var/cache,scratch,btrfs}
+  ```
+  
+  ```bash
+  mount -o noatime,ssd,compress=zstd,subvol=@home /dev/mapper/luks /mnt/home
+  mount -o noatime,ssd,compress=zstd,subvol=@log /dev/mapper/luks /mnt/var/log
+  mount -o noatime,ssd,compress=zstd,subvol=@cache /dev/mapper/luks /mnt/var/  cache
+  mount -o noatime,ssd,compress=zstd,subvol=@scratch /dev/mapper/luks /mnt/  scratch
+  mount -o noatime,ssd,compress=zstd,subvolid=5 /dev/mapper/luks /mnt/btrfs
+  ```
+  
+  ```bash
+  mkfs.fat -F32 /dev/sdX1
+  mount /dev/sdX /mnt/boot
+  ```
+  
+  ### swapfile
+  
+  ```bash
+  cd /mnt/btrfs/@swap
+  btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile
+  swapon ./swapfile
+  cd
+  ```
+  <br>
+  
 </details>
 
 --- 
@@ -215,7 +217,7 @@ reflector -c "PL" -f 12 -l 10 -n 12 --verbose --save /etc/pacman.d/mirrorlist
 pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectureCPU>-ucode btrfs-progs sudo git reflector
 ```
 
-> w przypadku procesora Intel użyj `intel-ucode` jeśli AMD użyj `amd-ucode`.
+> w przypadku procesora Intel użyj `intel-ucode` jeśli AMD użyj `amd-ucode`
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
@@ -228,7 +230,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 ```
 arch-chroot /mnt
 ```
-> <sup>***chroot = change root***</sup>
+<sup>***chroot = change root***</sup>
 
 
 ## 7. Konfiguracja systemu
@@ -237,19 +239,25 @@ arch-chroot /mnt
 
 > [!TIP] 
 > ![pacmanCONF](https://github.com/user-attachments/assets/c6ec226d-c0f7-4192-9173-cb4888888d40)
+
 ```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
->wymuszenie ponownego pobrania wszystkich baz danych repozytoriów pakietów
+
+> wymuszenie ponownego pobrania wszystkich baz danych repozytoriów pakietów
+
 ```bash
 pacman -Syy
 ```
+
 >ustawienie strefy czasowej
+
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
 ```
+
  > odkomentować linie w pliku `/etc/locale.gen`
 ```txt
 en_US.UTF-8 UTF-8
@@ -277,10 +285,12 @@ echo "ArchLinux" > /etc/hostname
 ::1       localhost.localdomain localhost
 127.0.1.1 ArchLinux.localdomain ArchLinux
 ```
+
 > hasło dla admina
 ```bash
 passwd
 ```
+
 > dodanie nowego użytkownika
 ```bash
 useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<UserName> <UserName>
@@ -288,7 +298,7 @@ passwd <UserName>
 ```
 
 > odkomenttować wiersz w `/etc/sudoers`
-```txt
+```ini
 %wheel ALL=(ALL:ALL) ALL
 ```
 
@@ -299,7 +309,7 @@ systemctl enable NetworkManager
 > jeśli system jest na partycji zaszyfrowanej, należy zakualizować zawartość **"HOOKS"** w
 `/etc/mkinitcpio.conf`
 
-```txt
+```ini
 HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
 ```
 
@@ -326,10 +336,10 @@ nmcli device wifi connect <SSID> password <PASSWORD>
 
 
 <details>
-<summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
-
-## 9. Instalacja  bootloadera
-
+<summary><h2>🚀 Instalacja programu rozruchowego</h2></summary>
+  
+  ## 9. Instalacja  bootloadera
+  
 <details>
 <summary><h3>Opcja 1: systemd-boot</h3></summary>
 
@@ -361,20 +371,20 @@ options root=/dev/sdb2 rw
 ```
 
 </details>
-
-
-<details>
-<summary><h3>Opcja 2: GRUB</h3></summary>
-
-```bash
-pacman -S --needed grub efibootmgr os-prober
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-</details>
-
-
+  
+  
+  <details>
+  <summary><h3>Opcja 2: GRUB</h3></summary>
+  
+  ```bash
+  pacman -S --needed grub efibootmgr os-prober
+  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+  grub-mkconfig -o /boot/grub/grub.cfg
+  ```
+  
+  </details>
+  
+  
 <details>
 <summary><h3>Opcja 3: rEFInd</h3></summary>
 
@@ -386,7 +396,7 @@ refind-install
 </details>
 
 ## 10. Zakończenie instalacji
-> Powrót do systemu instalacyjnego, odmontowanie dysków i porowne uruchomienie
+> Powrót do systemu instalacyjnego  *liveISO*, odmontowanie dysków i porowne uruchomienie
 
 ```bash
 exit
@@ -438,8 +448,10 @@ sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-lo
 
 
 <details>
-<summary><h2 id="personalizacja">⚙️ Personalizacja</h2></summary>
-> ⚠️ Sekcja w trakcie rozbudowy
+<summary><h2>⚙️ Personalizacja</h2></summary>
+ 
+ > [!WARNING]
+ > Sekcja w trakcie rozbudowy
 
 ## 11. Włącz multilib
 
@@ -491,7 +503,7 @@ mkinitcpio -p linux
 
 
 <details>
-<summary><h2 id="instalacja-nakładki-graficznej">🖥️ Środowisko graficzne</h2></summary>
+<summary><h2>🖥️ Środowisko graficzne</h2></summary>
 
 <details>
 <summary><h3>KDE Plasma</h3></summary>
@@ -535,8 +547,8 @@ reboot
 
 ## Uwagi
 
- 
-- Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
-- Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
+ > [!TIP]
+ > - Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
+ > - Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
 
 
