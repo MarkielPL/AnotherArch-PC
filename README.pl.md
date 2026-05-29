@@ -236,9 +236,8 @@ arch-chroot /mnt
 
 > poprawić linie w pliku `/etc/pacman.conf`
 
-> [!TIP] 
+> [!TIP]
 > ![pacmanCONF](https://github.com/user-attachments/assets/c6ec226d-c0f7-4192-9173-cb4888888d40)
-
 ```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
@@ -275,15 +274,16 @@ FONT_MAP=8859-2
 ```
 
 ```bash
-echo "ArchLinux" > /etc/hostname
+echo "<MachineName>" > /etc/hostname
 ```
 
 > dostosować zawartość pliku `/etc/hosts`
 ```txt
 127.0.0.1 localhost.localdomain localhost
 ::1       localhost.localdomain localhost
-127.0.1.1 ArchLinux.localdomain ArchLinux
+127.0.1.1 <MachineName>.localdomain <MachineName>
 ```
+> zastąpić `<MachineName>` własną nazwą hosta
 
 > hasło dla admina
 ```bash
@@ -304,17 +304,20 @@ passwd <UserName>
 <!-- ```bash
 systemctl enable NetworkManager
 ``` -->
-
+---
+---
 > jeśli system jest na partycji zaszyfrowanej, należy zakualizować zawartość **"HOOKS"** w
 `/etc/mkinitcpio.conf`
+
 
 ```ini
 HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-encrypt btrfs filesystems fsck)
 ```
-
 ```bash
 mkinitcpio -P
 ```
+---
+---
 
 ## 8. Instalacja *internetu* :)
 
@@ -325,12 +328,13 @@ systemctl enable NetworkManager
 > - <ins>[NetworkManager](https://networkmanager.dev/)</ins>
 
 > uruchomienie usługi obsługi sieci podczas uruchamiania
+
 ```bash
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
-
 > [!IMPORTANT]
+
 > Aby system się urucomił należy zainstalować program rozruchowy 
 
 
@@ -370,18 +374,18 @@ options root=/dev/sdb2 rw
 ```
 
 </details>
-  
-  
-  <details>
-  <summary><h3>Opcja 2: GRUB</h3></summary>
-  
-  ```bash
-  pacman -S --needed grub efibootmgr os-prober
-  grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-  grub-mkconfig -o /boot/grub/grub.cfg
-  ```
-  
-  </details>
+
+
+<details>
+<summary><h3>Opcja 2: GRUB</h3></summary>
+
+```bash
+pacman -S --needed grub efibootmgr os-prober
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+</details>
   
   
 <details>
@@ -395,15 +399,14 @@ refind-install
 </details>
 
 ## 10. Zakończenie instalacji
-> Powrót do systemu instalacyjnego  *liveISO*, odmontowanie dysków i porowne uruchomienie
+> Powrót do systemu instalacyjnego *liveISO*, odmontowanie dysków i porowne uruchomienie
 
 ```bash
 exit
 umount -R /mnt
 reboot
 ```
-> wyjmij nośnik instalacyjny
-
+> wyjmij nośnik instalacyjny :saluting_face:
 </details>
 </details>
 
@@ -449,8 +452,9 @@ sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-lo
 <details>
 <summary><h2>⚙️ Personalizacja</h2></summary>
  
- > [!WARNING]
+> [!WARNING]
  > Sekcja w trakcie rozbudowy
+
 
 ## 11. Włącz multilib
 
@@ -478,7 +482,6 @@ reflector --verbose --country "your country" --age 24 --sort rate --save /etc/pa
 > - Dodać skrypt:
 >   - aktualizacja reflector z systemd
 >   - czyszczący system po kazdej aktualizacji
-```
 
 
 ## 13. Instalacja AUR i firmware
@@ -547,8 +550,8 @@ reboot
 
 ## Uwagi
 
- > [!TIP]
- > - Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
- > - Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
+> [!TIP]
+> - Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
+> - Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
 
 
