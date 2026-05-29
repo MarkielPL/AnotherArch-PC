@@ -1,7 +1,7 @@
 > ## [!IMPORTANT]
 > work in progress
-- [ ] Add graphics/screenshots  
-- [ ] Improve the color scheme  
+> - [ ] Add graphics/screenshots  
+> - [ ] Improve the color scheme  
 
 # 🐧 Arch Linux – Step-by-step Installation
 ![Arch Linux](https://img.shields.io/badge/Arch-Linux-1793D1?logo=arch-linux&logoColor=white)
