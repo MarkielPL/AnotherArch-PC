@@ -1,4 +1,4 @@
-> ## [!IMPORTANT]
+> [!IMPORTANT]
 > work in progress
 > - [ ] Add graphics/screenshots  
 > - [ ] Improve the color scheme  
