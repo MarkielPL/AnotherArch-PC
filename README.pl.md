@@ -31,7 +31,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 
 <details>
-<summary><h2 id="instalacja-systemu">🧩 Instalacja systemu</h2></summary>
+<summary><h2>🧩 Instalacja systemu</h2></summary>
 
 <details> 
 <summary><h2> Opcja A - oficjalny skrypt instalator</h2> </summary>
@@ -39,6 +39,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 ```bash
 archinstall
 ```
+> <sup>- <ins>[oficjalna strona projektu](https://wiki.archlinux.org/title/Archinstall)</ins></sup>
 
 </details>
 
