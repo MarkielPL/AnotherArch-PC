@@ -19,7 +19,7 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 
 > ⚠️ Sekcja w trakcie rozbudowy
 
-- [Instalacja systemu](#instalacja-systemu)
+- [Instalacja systemu](#instalacja-systemu)[^1]
 - [Bootloader](#instalacja-programu-rozruchowego)
 - [Sterowniki](#instalacja-sterowników)
 - [Personalizacja](#personalizacja)
@@ -32,27 +32,56 @@ To jest instrukcja instalacji Arch Linux z UEFI, tworzeniem partycji, konfigurac
 <details>
 <summary><h2 id="instalacja-systemu">🧩 Instalacja systemu</h2></summary>
 
+<details> 
+<summary><h2> Opcja A - oficjalny skrypt instalator</h2> </summary>
+
+```
+archinstall
+```
+
+</details>
+
+<details> 
+<summary><h2> Opcja B - fanowski instalator</h2> </summary>
+
+```
+curl -LO archfi.sf.net/archfi
+```
+uruchom pobrany skrypt
+```
+sh archfi
+```
+
+
+> - <ins>[MatMoul/archfi](https://github.com/MatMoul/archfi)</ins>
+
+</details>
+
+
+<details> 
+<summary><h2> Opcja C - ręczna instalacja </h2> </summary>
+
 ### 1. Sprawdź tryb UEFI
 
-Upewnij się, że system wystartował w trybie UEFI:
+> upewnij się, że system wystartował w trybie UEFI:
 
 ```bash
 ls /sys/firmware/efi/efivars
 ```
 
-Jeśli katalog istnieje, jesteś w trybie UEFI
+> jeśli katalog istnieje, jesteś w trybie UEFI
 
 
 
 ### 2. Sprawdź połączenie sieciowe i ustaw zegar systemowy
 
-Przetestuj łączność z Internetem:
+> przetestuj łączność z Internetem
 
 ```bash
 ping -c 3 archlinux.org
 ```
 
-Włącz synchronizację czasu:
+> włącz synchronizację czasu
 
 ```bash
 timedatectl set-ntp true && timedatectl set-local-rtc true
@@ -62,25 +91,28 @@ timedatectl set-ntp true && timedatectl set-local-rtc true
 
 ### 3. Partycjonowanie dysku
 
+> [!WARNING]
+> Zastąp `/dev/sdX`(`/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3`) właściwymi urządzeniami, pomocna komenda to `lsblk`
+
 ```bash
 fdisk -l
 cfdisk /dev/sdX
 ```
 
-Przykładowy układ dla UEFI:
+### Przykładowy schemat partycji dysku
 
-- `/dev/sdb1` — EFI 512M, FAT32  
-- `/dev/sdb2` — root, ext4/btrfs  
-- `/dev/sdb3` — home, btrfs  
-
-Dostosuj nazwy urządzeń do swojego systemu prz pomocy `lsblk`
+| Partycja    | System plików | Rozmiar | Opis                                                                                |
+| ----------- | ------------- | ------- | ----------------------------------------------------------------------------------- |
+| `/dev/sdb1` | FAT32         | 512 MB  | Partycja EFI wykorzystywana jako dysk rozruchowy `/boot`                            |
+| `/dev/sdb2` | ext4 / btrfs  | 80–120 GB       | Główna partycja systemowa `root` (`/`)                                              |
+| `/dev/sdb3` | btrfs         | Pozostałe miejsce       | Partycja użytkownika `home` (`/home`) przechowująca dane i konfiguracje użytkownika |
 
 ---
 
 <details>
 <summary>🔓 system bez szyfrowania</summary>
 
-### 4. Utwórz systemy plików
+### 4. Utwórz systemy plików (*formatowanie dysków*)
 
 ```bash
 mkfs.fat -F32 /dev/sdb1
@@ -88,7 +120,7 @@ mkfs.ext4 /dev/sdb2
 mkfs.btrfs /dev/sdb3
 ```
 
-Jeśli root ma być na btrfs:
+>Jeśli root ma być na btrfs:
 
 ```bash
 mkfs.btrfs /dev/sdb2
@@ -110,7 +142,8 @@ mount /dev/sdb3 /mnt/home
 <details>
 <summary>🔐 LUKS</summary>
 
-> ⚠️ Sekcja w trakcie naprawy
+> # [!CAUTION]
+> Sekcja w trakcie naprawy - przyda się pomoc
 
 ## 4. Utwórz system plików i zamontuj partycje
 
@@ -163,11 +196,11 @@ btrfs filesystem mkswapfile --size 20g --uuid clear ./swapfile
 swapon ./swapfile
 cd
 ```
-
 <br>
 
 </details>
 
+--- 
 --- 
 
 ## 6. Zainstaluj system podstawowy
@@ -185,25 +218,34 @@ pacstrap -K /mnt base base-devel linux linux-firmware nano usbutils <architectur
 > w przypadku procesora Intel użyj `intel-ucode` jeśli AMD użyj `amd-ucode`.
 ```bash
 genfstab -U /mnt >> /mnt/etc/fstab
+```
+
+> poniższa komenda pozwala "wejsc" do świeżo zainstalowanego systemu i konfigurować go od środka, czyli:
+> - ustawienie hasła;
+> - strefy czasowej;
+> - bootloadera;
+> - konfiguracji systemu.
+```
 arch-chroot /mnt
 ```
+> <sup>***chroot = change root***</sup>
 
 
 ## 7. Konfiguracja systemu
 
 > poprawić linie w pliku `/etc/pacman.conf`
 
-> [!TIP]
+> [!TIP] 
 > ![pacmanCONF](https://github.com/user-attachments/assets/c6ec226d-c0f7-4192-9173-cb4888888d40)
 ```ini
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 ```
-
+>wymuszenie ponownego pobrania wszystkich baz danych repozytoriów pakietów
 ```bash
 pacman -Syy
 ```
-
+>ustawienie strefy czasowej
 ```bash
 ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
 hwclock --systohc --utc
@@ -235,11 +277,11 @@ echo "ArchLinux" > /etc/hostname
 ::1       localhost.localdomain localhost
 127.0.1.1 ArchLinux.localdomain ArchLinux
 ```
-> Hasło dla admina i dodanie nowego użytkownika
+> hasło dla admina
 ```bash
 passwd
 ```
-
+> dodanie nowego użytkownika
 ```bash
 useradd -mG wheel,storage,power,log,adm,uucp,tss,rfkill -g users -s /bin/bash -d /home/<UserName> <UserName>
 passwd <UserName>
@@ -265,30 +307,34 @@ HOOKS=(base keyboard systemd autodetect modconf kms block keymap sd-vconsole sd-
 mkinitcpio -P
 ```
 
-</details>
-
-
-> [!WARNING]
->  Aby system się urucomił należy zainstalować program rozruchowy 
-
-
-<details>
-<summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
-
-## 9. Instalacja sieci i bootloadera
+## 8. Instalacja *internetu* :)
 
 ```bash
 pacman -S networkmanager
 systemctl enable NetworkManager
 ```
+> - <ins>[NetworkManager](https://networkmanager.dev/)</ins>
 
+> uruchomienie usługi obsługi sieci podczas uruchamiania
 ```bash
 nmcli device wifi connect <SSID> password <PASSWORD>
 ```
 
 
+> [!IMPORTANT]
+> Aby system się urucomił należy zainstalować program rozruchowy 
+
+
+<details>
+<summary><h2 id="instalacja-programu-rozruchowego">🚀 Instalacja programu rozruchowego</h2></summary>
+
+## 9. Instalacja  bootloadera
+
 <details>
 <summary><h3>Opcja 1: systemd-boot</h3></summary>
+
+> [!WARNING]
+> niesprawdzone jeszcze
 
 
 ```bash
@@ -305,7 +351,7 @@ console-mode max
 editor no
 ```
 
-`/boot/loader/entries/arch.conf`
+> edytować plik `/boot/loader/entries/arch.conf`
 
 ```ini
 title   Arch Linux
@@ -337,17 +383,19 @@ pacman -S --needed refind
 refind-install
 ```
 
+</details>
 
 ## 10. Zakończenie instalacji
+> Powrót do systemu instalacyjnego, odmontowanie dysków i porowne uruchomienie
 
 ```bash
 exit
 umount -R /mnt
 reboot
 ```
+> wyjmij nośnik instalacyjny
 
 </details>
-
 </details>
 
 
@@ -381,6 +429,8 @@ sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-
 ```bash
 sudo pacman -S --needed lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader
 ```
+
+</details>
 
 </details>
 
@@ -485,6 +535,8 @@ reboot
 
 ## Uwagi
 
-- Zastąp `/dev/sdX`, `/dev/sdb1`, `/dev/sdb2`, `/dev/sdb3` właściwymi urządzeniami  
+ 
 - Użyj `amd-ucode` lub `intel-ucode` zgodnie z procesorem  
 - Pakiet `base-devel` jest potrzebny do budowania pakietów z AUR  
+
+
