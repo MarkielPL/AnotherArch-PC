@@ -201,7 +201,6 @@ mount /dev/sdb3 /mnt/home
 </details>
 
 --- 
---- 
 
 ## 6. Zainstaluj system podstawowy
 
